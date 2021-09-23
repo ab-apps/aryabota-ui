@@ -34,6 +34,7 @@ h3 {
 
 .game {
   /* padding: 5%; */
+  padding-left: 3%;
   margin-top: 95px;
   display: flex;
   flex-direction: row;
@@ -140,4 +141,14 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+@media only screen and (max-width: 900px) {
+  .game {
+    flex-direction: column;
+  }
+
+  .separator {
+    display: none;
+  }
 }

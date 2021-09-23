@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { GoogleLogout } from 'react-google-login';
+import {useDispatch} from 'react-redux';
 import './styles/uiConfigurations.css';
 //BUTTON and DROPDOWN COMPONENTS
 import Select from 'react-select';
@@ -10,14 +11,12 @@ import { GithubPicker } from 'react-color';
 //MATERIAL UI ICONS FOR CONFIG BUTTONS
 import PaletteTwoTone from '@material-ui/icons/PaletteTwoTone';
 import FormatSize from '@material-ui/icons/FormatSize';
-import Refresh from '@material-ui/icons/Refresh';
 import CodeIcon from '@material-ui/icons/Code';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-// import LogoutTwoToneIcon from '@mui/icons-material/LogoutTwoTone';
+import {removeEmail} from './reducers/actions';
 //MAZE STATE
 import { MazeState, Constants } from './globalStates';
 //UTILS
-import { convertToContinuousNumbering } from './utils';
 import pes_logo_white_text from './assets/pes_logo_white_text.png';
 
 /* eslint no-unused-vars:"off" */
@@ -32,7 +31,7 @@ import pes_logo_white_text from './assets/pes_logo_white_text.png';
  * <UiConfigs />
  */
 function UiConfigs(props) {
-
+    const dispatch = useDispatch();
     /**
      * Global context / state to manipulate character location, etc.
      * @const
@@ -233,7 +232,6 @@ function UiConfigs(props) {
         const onClick = () => {
             let path = 'home';
             history.push(path);
-            console.log('pushed history: ', history);
         }
 
         return (
@@ -247,16 +245,15 @@ function UiConfigs(props) {
 
     const LogoutButton = () => {
         const history = useHistory();
-        console.log('history: ', history);
 
-        const logout = (response) => {
-            console.log("logged out:", response);
+        const logout = (_response) => {
+            dispatch(removeEmail());
             let path = '/';
             history.push(path);
-            console.log('pushed history: ', history);
         }
 
         return (
+            <div className="googleLogout">
             <GoogleLogout
                 render={renderProps => (
                     <Button variant="contained" startIcon={<CodeIcon />} onClick={renderProps.onClick} disabled={renderProps.disabled}>Logout</Button>
@@ -265,6 +262,7 @@ function UiConfigs(props) {
                 buttonText="Logout"
                 onLogoutSuccess={logout}
             />
+            </div>
         )
     }
 
@@ -285,9 +283,6 @@ function UiConfigs(props) {
             <div className="toolbar" id="toolbar-div">
                 <div className="configs">
                     <img className="pes-logo" alt="PES University Logo" src={pes_logo_white_text} height="45px" />
-                    {/* <GridButton /> */}
-                    {/* <AboutButton /> */}
-                    {/* <ResetButton /> */}
                     <ToggleSize />
                     <ToggleColor />
                     <TogglePane />

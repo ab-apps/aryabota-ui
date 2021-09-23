@@ -1,9 +1,9 @@
 .levelMap {
-    /* height: 100; */
+    height: 100%;
     width: 5%;
     position: fixed;
     z-index: 10;
-    top: 0;
+    top: 13.5%;
     left: 0;
     background-color: #e46060;
     transition:  .5s ease;

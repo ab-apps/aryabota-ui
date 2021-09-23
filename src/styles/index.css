@@ -1,0 +1,25 @@
+body {
+    background-color: #ffcd03d7;
+}
+
+.login-content {
+    max-width: 30%;
+    text-align: center;
+    min-width: 344px;
+    width: fit-content;
+    color: black;
+    background-color: white;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: x-large;
+    box-shadow: 2px 2px 2px 2px #01393fe0;
+    padding: 5% 2%;
+    margin: 3% auto ;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.google-login {
+    font-size: large;
+}

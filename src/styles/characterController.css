@@ -1,0 +1,43 @@
+.game-info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  width: 25vw;
+  height: 70vh;
+  /* border: 0.5px dotted #3f3e3e; */
+  border-radius: 3px;
+  user-select: none;
+}
+
+textarea, .editor {  
+font-family: Consolas, monaco, monospace; 
+font-size: 15px;   
+height: 200px;
+width: 116%;
+}
+
+.submit-area {
+  display: flex;
+}
+
+.input-div {
+  /* display: flex; */
+  /* flex-direction: column; */
+  height: 100%;
+  /* justify-content: space-around; */
+}
+
+.output-div {
+  height: 20%;
+  background-color: whitesmoke;
+}
+
+.output-title {
+  background-color: #006b76; /*rgb(139, 195, 74);*/
+}
+
+.separator{
+  height: 90vh;
+  border: 0.5px solid;
+  color: black;
+}

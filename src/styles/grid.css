@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap');
+
+body {
+  font-family: 'Oswald', sans-serif;
+  /* font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
+  width: 98vw;
+  background-color: #006b76; /* rgb(139, 195, 74); #fcc663; */
+  color: whitesmoke;
+  letter-spacing: 0.6px;
+  word-spacing: 1.5px;
+}
+
+ol, ul {
+  padding-left: 30px;
+}
+
+p, h3{
+  display: block;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+p {
+  font-family: Consolas, monaco, monospace; 
+  font-size: medium;
+}
+
+h3 {
+  font-size: larger;
+}
+
+.game {
+  /* padding: 5%; */
+  margin-top: 95px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-color: #000000;
+  border-top: solid black 1.8px;
+  border-bottom: solid black 1.8px;
+  /* border-style: solid; */
+}
+
+.maze-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.game-maze{
+  color: #3f3e3e;
+  /* font-family: "Oswald"; */
+  /* font-weight: bolder;  */
+  user-select: none;
+}
+
+.status {
+  margin-bottom: 10px;
+  font-size: 25px;
+}
+
+.block {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 24px;
+  /* font-weight: bold; */
+  line-height: 50px;
+  height: 50px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 50px;
+}
+
+.block:focus {
+  outline: none;
+}
+
+.kbd-navigation .block:focus {
+  background: #ddd;
+}
+
+.grid-container {
+  margin-top: 20px;
+}
+
+.score{
+  margin-top: 10%;
+  align-self: center;
+  font-size: 30px;
+}
+
+.score-text{
+  padding: 5px;
+  height: max-content;
+  width: 25vw;
+  text-align: center;
+  color: #3f3e3e;
+  background-color: #EBF0F2;
+  border-radius: 5px;
+}
+
+.play-info{
+  margin-left: 6%;
+  margin-top: 15%;
+  color: #545657;
+  font-family: 'Nunito', sans-serif;
+}
+
+.tag-line{
+  align-self: center;
+  margin-top: 25%;
+  font-size: 20px;
+  color: #545657;
+  font-family: 'Nunito', sans-serif;
+}
+
+.router {
+  top: 50px;
+  z-index: 100;
+}
+
+.levelMap {
+  /* height: 100; */
+  width: 5%;
+  /* position: fixed; */
+  z-index: 10;
+  /* top: 0;
+  left: 0; */
+  background-color: #e46060;
+  transition:  .5s ease;
+  overflow-x: hidden;
+  padding-top: 20px;
+  flex-shrink: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

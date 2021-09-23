@@ -1,0 +1,62 @@
+.toolbar {
+  /* display: none; */
+  height: max-content;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #044850;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px;
+  z-index: 5;
+}
+
+
+.colorSelector button, .sizeSelector button, .levelSelector button, .penToggle button {
+  width: 150px;
+  background-color: rgb(0, 81, 124);
+  color: whitesmoke;
+}
+
+.resetButton button {
+  width: 100px;
+  background-color: rgb(0, 81, 124);
+  color: whitesmoke;
+}
+
+.colorSelector :hover, .sizeSelector :hover, .levelSelector :hover, .penToggle :hover, .resetButton :hover, .pythonViewer :hover{
+  color: black;
+}
+
+.penUp {
+  background-color: white;
+}
+
+.penDown {
+  background-color: yellow;
+}
+
+.configs {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: right;
+  align-items: inherit;
+  margin: 0 4% 0 15%;
+  column-gap: 3%;
+}
+
+.pes-logo {
+  position: fixed;
+  top:  1.5vh;
+  left: 3%;
+}
+
+.pythonViewer button {
+  width: 180px;
+  background-color: rgb(0, 81, 124);
+  color: whitesmoke;
+}

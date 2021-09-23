@@ -6,7 +6,7 @@ import "ace-builds/src-noconflict/theme-github";
 import './styles/characterController.css';
 //GLOBAL CONTEXT / STATE
 import { MazeState } from './globalStates';
-import { convertToContinuousNumbering, convertToProblemState } from './utils';
+import { convertToContinuousNumbering } from './utils';
 import UiConfigs from './uiConfigurations';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { blueGrey } from '@material-ui/core/colors';
@@ -36,7 +36,6 @@ export default function Controller() {
 
     const [penState, setPenState] = useState("penDown");
     const [editorFont, setEditorFont] = useState(14);
-    const [question, showQuestion] = useState(true);
     const userEmail = useSelector((state) => state.user.email)
     const currentLevel = useSelector((state) => state.user.currentLevel);
 
@@ -204,7 +203,6 @@ export default function Controller() {
         output = output.replace(/^\s*\n+|\s*\n+$/g, '');
         return output;
     }
-    /* eslint no-unused-vars:"off" */
 
     const submitCode = function (e) {
         e.preventDefault();
@@ -220,13 +218,6 @@ export default function Controller() {
     let [editorValue, setEditorValue] = useState('');
     function onChange(newValue) {
         setEditorValue(newValue);
-    }
-    const submitButtonStyle = {
-        marginTop: '30px',
-        width: '110px',
-        marginLeft: mazeData.levelType === 'value_match'
-            ? '90px'
-            : '65%'
     }
 
     return (

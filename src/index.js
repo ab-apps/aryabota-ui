@@ -59,7 +59,6 @@ const LoginButton = () => {
 	)
 }
 
-/* eslint no-unused-vars:"off" */
 const Content = () => {
 	return (
 		<div className="login-content">

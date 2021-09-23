@@ -19,7 +19,7 @@ const SignupForm = () => {
         var formData = new FormData(document.getElementById('sign-up-form'))
 
         console.log('!!', formData);
-        fetch('https://1.6.181.5:80/api/user', {
+        fetch('https://aryabota.herokuapp.com/api/user', {
             crossDomain: true,
             method: 'POST',
             body: JSON.stringify({email: 'vaani6798@gmail.com'}),

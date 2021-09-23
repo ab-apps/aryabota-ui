@@ -26,7 +26,7 @@ const LoginButton = () => {
 	console.log('history: ', history);
 
 	const routeChange = (response) => {
-		fetch(`https://1.6.181.5:80/api/user?email=${response.profileObj.email}`, {
+		fetch(`https://aryabota.herokuapp.com/api/user?email=${response.profileObj.email}`, {
 			crossDomain: true,
 			method: 'GET',
 			headers: {

@@ -25,7 +25,6 @@ export function Game() {
    * @const
    */
   const [mazeData, setMazeData] = useState({});
-    /* eslint no-unused-vars:"off" */
 
   /**
    * Game's useEffect:

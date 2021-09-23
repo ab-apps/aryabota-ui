@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import './styles/levelMap.css';
 
 /**
@@ -17,10 +17,10 @@ function LevelMap(props) {
         <>
             <div className="levelMap">
                 <p>LEVELS</p>
-                <a href="">1</a>
-                <a href="">2</a>
-                <a href="">3</a>
-                <a href="">4</a>
+                <a href="/a">1</a>
+                <a href="/b">2</a>
+                <a href="/c">3</a>
+                <a href="/d">4</a>
             </div>
         </>
     );

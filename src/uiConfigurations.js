@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { GoogleLogout } from 'react-google-login';
 import {useDispatch} from 'react-redux';
@@ -15,11 +15,10 @@ import CodeIcon from '@material-ui/icons/Code';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import {removeEmail} from './reducers/actions';
 //MAZE STATE
-import { MazeState, Constants } from './globalStates';
+import { Constants } from './globalStates';
 //UTILS
 import pes_logo_white_text from './assets/pes_logo_white_text.png';
 
-/* eslint no-unused-vars:"off" */
 /**
  * UI Configuration Toolbar Component
  * This component provides support for:
@@ -32,12 +31,6 @@ import pes_logo_white_text from './assets/pes_logo_white_text.png';
  */
 function UiConfigs(props) {
     const dispatch = useDispatch();
-    /**
-     * Global context / state to manipulate character location, etc.
-     * @const
-     */
-    const [mazeData, setMazeData] = useContext(MazeState);
-
     /**
      * color sets the base color of the webpage
      * @var

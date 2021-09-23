@@ -1,21 +1,22 @@
-![React Logo](https://github.com/vercel/vercel/blob/master/packages/frameworks/logos/react.svg)
+# AryaBota UI
 
-# React Example
+## Development
+Note: Before you begin, make sure you have the back-end Flask app up and running. Visit [aryabota-services](https://github.com/ab-apps/aryabota-services) to learn more about this.
 
-This directory is a brief example of a [React](https://reactjs.org/) app with [Serverless Functions](https://vercel.com/docs/v2/serverless-functions/introduction) that can be deployed with Vercel and zero configuration.
+### Requirements
+* Node v14
 
-## Deploy Your Own
+### Run the App
+1. `npm install` to install the required dependencies from `package.json`
+2. `npm start` to run the app locally in development mode    
 
+Visit `localhost:3000` to use the app!  
+
+## Vercel
 Deploy your own React project, along with Serverless Functions, with Vercel.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/vercel/tree/main/examples/create-react-app-functions&template=create-react-app)
 
 _Live Example: https://create-react-app.now-examples.now.sh/_
 
-### How We Created This Example
 
-To get started with React, along with [Serverless Functions](https://vercel.com/docs/v2/serverless-functions/introduction), with Vercel, you can use the [Create-React-App CLI](https://reactjs.org/docs/create-a-new-react-app.html#create-react-app) to initialize the project:
-
-```shell
-$ npx create-react-app my-app
-```

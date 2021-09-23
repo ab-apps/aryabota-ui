@@ -15,7 +15,8 @@
 }
 
 
-.colorSelector button, .sizeSelector button, .levelSelector button, .penToggle button {
+.colorSelector button, .sizeSelector button, .levelSelector button, 
+.penToggle button, .googleLogout button {
   width: 150px;
   background-color: rgb(0, 81, 124);
   color: whitesmoke;
@@ -27,7 +28,9 @@
   color: whitesmoke;
 }
 
-.colorSelector :hover, .sizeSelector :hover, .levelSelector :hover, .penToggle :hover, .resetButton :hover, .pythonViewer :hover{
+.colorSelector :hover, .sizeSelector :hover, .levelSelector :hover, 
+.penToggle :hover, .resetButton :hover, .pythonViewer :hover,
+ .googleLogout :hover{
   color: black;
 }
 

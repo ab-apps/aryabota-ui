@@ -1,17 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
+import {useSelector} from 'react-redux';
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-github";
 import './styles/characterController.css';
 //GLOBAL CONTEXT / STATE
 import { MazeState } from './globalStates';
-import { convertToContinuousNumbering } from './utils';
+import { convertToContinuousNumbering, convertToProblemState } from './utils';
 import UiConfigs from './uiConfigurations';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { blueGrey } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
 import PlayArrowRounded from '@material-ui/icons/PlayArrowRounded';
 import Maze from './mazeGenerator';
+import LevelMap from './levelMap';
 
 /**
  * Component for controlling character/player
@@ -35,6 +37,8 @@ export default function Controller() {
     const [penState, setPenState] = useState("penDown");
     const [editorFont, setEditorFont] = useState(14);
     const [question, showQuestion] = useState(true);
+    const userEmail = useSelector((state) => state.user.email)
+    const currentLevel = useSelector((state) => state.user.currentLevel);
 
     /**
      * local state to store interval id / game loop id
@@ -167,14 +171,13 @@ export default function Controller() {
             //     }));
             // }
         })
-
     }
 
     function getSteps(code, currState) {
         fetch('https://aryabota.herokuapp.com/api/problem?level=0.1', {
             crossDomain: true,
             method: 'POST',
-            body: JSON.stringify({commands: code, level: '0.1', email: 'abc@gmail.com'}),
+            body: JSON.stringify({commands: code, level: currentLevel.toString(), email: userEmail}),
             headers: {
                 'Content-type': 'application/json',
                 'Content-Security-Policy': 'upgrade-insecure-requests'
@@ -201,18 +204,7 @@ export default function Controller() {
         output = output.replace(/^\s*\n+|\s*\n+$/g, '');
         return output;
     }
-
     /* eslint no-unused-vars:"off" */
-    const displayQuestion = function (e) {
-        if (question) {
-            document.getElementById('question').style.display = 'none';
-            showQuestion(false);
-        }
-        else {
-            document.getElementById('question').style.display = 'block';
-            showQuestion(true);
-        }
-    }
 
     const submitCode = function (e) {
         e.preventDefault();
@@ -239,12 +231,13 @@ export default function Controller() {
 
     return (
         <>
+            <LevelMap />
             <UiConfigs
                 penLoc={mazeData.penLoc}
                 onPenChange={setPenState}
                 onSizeChange={setEditorFont}
             />
-                {/* <LevelMap /> */}
+
                 <div className="game-info">
                     <div className="problem-div">
                         <p id="question">{mazeData.statement}</p>

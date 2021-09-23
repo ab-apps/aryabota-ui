@@ -9,7 +9,6 @@ import MessageModal from '../modals/MessageModal';
 //GLOBAL CONTEXT / STATE
 import { MazeState } from '../globalStates';
 
-
 /**
  * Main Game Component
  * This component:
@@ -26,9 +25,7 @@ export function Game() {
    * @const
    */
   const [mazeData, setMazeData] = useState({});
-  /* eslint no-unused-vars:"off" */
-  const [penState, setPenState] = useState("penDown");
-  const [editorFont, setEditorFont] = useState(14);
+    /* eslint no-unused-vars:"off" */
 
   /**
    * Game's useEffect:
@@ -39,7 +36,7 @@ export function Game() {
     /**
      * making request to get initial state of the grid and CoinSweeper robot 
      */
-    fetch('https://aryabota.herokuapp.com/api/problem?level=0.1', {
+     fetch('https://aryabota.herokuapp.com/api/problem?level=0.1', {
       crossDomain: true,
       method: 'GET',
       headers: {
@@ -102,19 +99,6 @@ export function Game() {
 }
 ReactDOM.render(
   <>
-    {/* <Router className="router">
-        <Link className="router" to="/">Home</Link>
-        <Link className="router" to="/about">About</Link>
-        <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/">
-            <Game />
-          </Route>
-        </Switch>
-      </Router> */}
-
     <Game />
   </>,
   document.getElementById('root')

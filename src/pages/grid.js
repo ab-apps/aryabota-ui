@@ -35,7 +35,7 @@ export function Game() {
     /**
      * making request to get initial state of the grid and CoinSweeper robot 
      */
-     fetch('https://aryabota.herokuapp.com/api/problem?level=0.1', {
+    fetch('https://aryabota.herokuapp.com/api/problem?level=0.1', {
       crossDomain: true,
       method: 'GET',
       headers: {

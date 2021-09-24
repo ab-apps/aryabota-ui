@@ -19,7 +19,7 @@
 .form-style-1 {
 	margin:10px auto;
 	/* max-width: 400px; */
-	padding: 20px 12px 10px 20px;
+	padding: 4px 12px 10px 20px;
 	font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 .form-style-1 li {
@@ -51,10 +51,6 @@ select{
 	border:1px solid #BEBEBE;
 	padding: 7px;
 	margin:0px;
-	-webkit-transition: all 0.30s ease-in-out;
-	-moz-transition: all 0.30s ease-in-out;
-	-ms-transition: all 0.30s ease-in-out;
-	-o-transition: all 0.30s ease-in-out;
 	outline: none;	
 }
 .form-style-1 input[type=text]:focus, 
@@ -104,4 +100,23 @@ select{
 }
 .form-style-1 .required{
 	color:red;
+}
+
+.disclaimer {
+	font-size: 60%;
+	background-color: #d8e9f9;
+}
+
+.intro-text {
+	margin: 0 3%;
+}
+
+.submit {
+	width: 30%;
+	margin: 0 auto;
+	display: block;
+	padding: 1%;
+	border: solid cadetblue;
+	background-color: #d8e9f9;
+	cursor: pointer;
 }

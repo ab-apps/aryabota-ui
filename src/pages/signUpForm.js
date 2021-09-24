@@ -4,6 +4,7 @@ import { TOP_LEVEL_PATHS } from '../constants/routeConstants';
 import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
+import { Constants } from '../globalStates';
 
 const SignupForm = () => {
 	// Pass the useFormik() hook initial form values and a submit function that will
@@ -65,8 +66,10 @@ const SignupForm = () => {
 	return (
 		<>
 			<div className="sign-up-form">
+				<div className="intro-text">
 				<span>Welcome {userName}!</span>
-				<span>Insert disclaimer here</span>
+				<div className="disclaimer">{Constants.disclaimer}</div>
+				</div>
 				<form onSubmit={formik.handleSubmit}>
 					<ul className="form-style-1">
 						<li>
@@ -118,7 +121,7 @@ const SignupForm = () => {
 						</li>
 						<li>
 							<label>How would you rate your programming skills? (between 0 and 5) <span className="required">*</span></label>
-							<input required type="number" min={0} max={5} name="skills" onChange={formik.handleChange} className="field-small" />
+							<input required type="number" min={0} max={5} name="skills" onChange={formik.handleChange} className="field-divided" />
 						</li>
 						<li>
 							<label>If you know programming, which language(s) do you know?</label>
@@ -134,7 +137,7 @@ const SignupForm = () => {
 						</li>
 					</ul>
 					<br />
-					<button type="submit" style={{ width: "30%", margin: "0 auto", display: "block" }}>Submit</button>
+					<button type="submit" className="submit">Submit</button>
 				</form>
 			</div>
 		</>

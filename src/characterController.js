@@ -231,6 +231,7 @@ export default function Controller() {
 
                 <div className="game-info">
                     <div className="problem-div">
+                    <h3>Question:</h3>
                         <p id="question">{mazeData.statement}</p>
                         <br />
                     </div>

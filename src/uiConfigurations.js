@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { GoogleLogout } from 'react-google-login';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import './styles/uiConfigurations.css';
 //BUTTON and DROPDOWN COMPONENTS
 import Select from 'react-select';
@@ -13,7 +13,7 @@ import PaletteTwoTone from '@material-ui/icons/PaletteTwoTone';
 import FormatSize from '@material-ui/icons/FormatSize';
 import CodeIcon from '@material-ui/icons/Code';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import {removeEmail} from './reducers/actions';
+import { removeEmail } from './reducers/actions';
 //MAZE STATE
 import { Constants } from './globalStates';
 //UTILS
@@ -247,14 +247,14 @@ function UiConfigs(props) {
 
         return (
             <div className="googleLogout">
-            <GoogleLogout
-                render={renderProps => (
-                    <Button variant="contained" startIcon={<CodeIcon />} onClick={renderProps.onClick} disabled={renderProps.disabled}>Logout</Button>
-                )}
-                clientId={Constants.clientId}
-                buttonText="Logout"
-                onLogoutSuccess={logout}
-            />
+                <GoogleLogout
+                    render={renderProps => (
+                        <Button variant="contained" startIcon={<CodeIcon />} onClick={renderProps.onClick} disabled={renderProps.disabled}>Logout</Button>
+                    )}
+                    clientId={Constants.clientId}
+                    buttonText="Logout"
+                    onLogoutSuccess={logout}
+                />
             </div>
         )
     }

@@ -1,7 +1,7 @@
 import React from 'react';
 //IMPORT SPRITES
-import coinsweeper_img from './assets/bot3.png';
-import obstacle_img from './assets/obstacle.png'
+import coinsweeper_img from './assets/bot_arrow.png';
+import obstacle_img from './assets/cross.png'
 import coin_stack from './assets/coin_stack.png'
 import home from './assets/home.png'
 
@@ -19,7 +19,6 @@ export default function Maze(props) {
    * status/title for maze game
    * @const
    */
-  // const status = 'CoinSweeper';
 
   /**
    * addRows function to generate a array of row 
@@ -121,7 +120,7 @@ function Block(props) {
 
   //background image style
   var blockStyle = {
-    backgroundSize: "75%",
+    backgroundSize: "88%",
     backgroundRepeat  : 'no-repeat',
     backgroundPosition: 'center',
     backgroundImage: props.image,

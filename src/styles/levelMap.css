@@ -3,7 +3,7 @@
     width: 5%;
     min-width: 70px;
     position: fixed;
-    z-index: auto;
+    z-index: 5;
     top: 75px;
     left: 0;
     background-color: #0c3336;

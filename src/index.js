@@ -18,7 +18,7 @@ import { Constants } from './globalStates';
 import { TOP_LEVEL_PATHS } from './constants/routeConstants';
 import { Provider } from 'react-redux';
 import store from './reducers';
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
 import {addEmail, addName} from './reducers/actions';
 
 const failed = (response) => {

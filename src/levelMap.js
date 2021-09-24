@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import './styles/levelMap.css';
+import { useDispatch } from 'react-redux'
+import { setLevel } from './reducers/actions';
 //GLOBAL CONTEXT / STATE
 import { MazeState } from './globalStates';
 import { convertToContinuousNumbering } from './utils';
@@ -16,13 +18,12 @@ import { convertToContinuousNumbering } from './utils';
  */
 function LevelMap(props) {
 
+    const dispatch = useDispatch();
     const mazeContext = useContext(MazeState);
     const setMazeData = mazeContext[1];
 
     const getLevel = (e) => {
         let level = e.target.textContent;
-        console.log('level', level);
-
         fetch('https://aryabota.herokuapp.com/api/problem?level=' + level, {
             crossDomain: true,
             method: 'GET',
@@ -33,7 +34,7 @@ function LevelMap(props) {
         })
             .then(response => response.json())
             .then(response => {
-                console.log('response:', response);
+                dispatch(setLevel(level));
                 setMazeData(mazeData => ({
                     ...mazeData,
                     rows: response?.rows,

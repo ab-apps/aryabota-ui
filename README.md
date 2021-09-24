@@ -12,6 +12,9 @@ Note: Before you begin, make sure you have the back-end Flask app up and running
 
 Visit `localhost:3000` to use the app!  
 
+## How To
+Visit the documentation [here](https://aryabota-docs.notion.site/AryaBota-316098bf36fc4cef9aeb8ef884a8c2d3).
+
 ## Vercel
 Deploy your own React project, along with Serverless Functions, with Vercel.
 

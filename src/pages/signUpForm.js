@@ -5,6 +5,7 @@ import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { Constants } from '../globalStates';
+import { BASE_URL, environment } from '../constants/routeConstants';
 
 const SignupForm = () => {
 	// Pass the useFormik() hook initial form values and a submit function that will
@@ -14,10 +15,7 @@ const SignupForm = () => {
 	const userName = useSelector((state) => state.user.fullName)
 
 	const registerUser = values => {
-		// event.preventDefault();
-		console.log('!! values', values);
-		// var formData = new FormData(document.getElementById('sign-up-form'))
-        fetch('https://aryabota.herokuapp.com/api/user', {
+        fetch(`${BASE_URL[environment]}/api/user`, {
 			crossDomain: true,
 			method: 'POST',
 			body: JSON.stringify({ email: userEmail, ...values }),
@@ -28,12 +26,8 @@ const SignupForm = () => {
 		})
 			.then(response => response.json())
 			.then(response => {
-				console.log('!! response form', response);
-				// if(response) {
 				let path = TOP_LEVEL_PATHS.HOME;
 				history.push(path);
-				console.log('pushed history: ', history);
-				// }
 			});
 	}
 

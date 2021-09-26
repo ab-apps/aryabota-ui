@@ -20,6 +20,7 @@ import { Provider } from 'react-redux';
 import store from './reducers';
 import { useDispatch } from 'react-redux';
 import {addEmail, addName} from './reducers/actions';
+import { BASE_URL, environment } from './constants/routeConstants';
 
 const failed = (response) => {
 	console.log("failed:", response);
@@ -30,7 +31,8 @@ const LoginButton = () => {
 	const dispatch = useDispatch();
 
 	const routeChange = (response) => {
-		fetch(`https://aryabota.herokuapp.com/api/user?email=${response.profileObj.email}`, {
+		console.log(`${BASE_URL[environment]}/api/user?email=${response.profileObj.email}`)
+		fetch(`${BASE_URL[environment]}/api/user?email=${response.profileObj.email}`, {
 			crossDomain: true,
 			method: 'GET',
 			headers: {

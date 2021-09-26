@@ -8,6 +8,7 @@ import Controller from '../characterController';
 import MessageModal from '../modals/MessageModal';
 //GLOBAL CONTEXT / STATE
 import { MazeState } from '../globalStates';
+import { BASE_URL, environment } from '../constants/routeConstants';
 
 /**
  * Main Game Component
@@ -35,7 +36,7 @@ export function Game() {
     /**
      * making request to get initial state of the grid and CoinSweeper robot 
      */
-    fetch('https://aryabota.herokuapp.com/api/problem?level=0.1', {
+    fetch(`${BASE_URL[environment]}/api/problem?level=0.1`, {
       crossDomain: true,
       method: 'GET',
       headers: {

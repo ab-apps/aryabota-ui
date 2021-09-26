@@ -14,6 +14,7 @@ import Button from '@material-ui/core/Button';
 import PlayArrowRounded from '@material-ui/icons/PlayArrowRounded';
 import Maze from './mazeGenerator';
 import LevelMap from './levelMap';
+import {BASE_URL, environment} from './constants/routeConstants';
 
 /**
  * Component for controlling character/player
@@ -159,21 +160,11 @@ export default function Controller() {
                     steps: steps
                 }));
             }
-            // else {
-            //     let stepObj = {
-            //         python: step.python,
-            //     };
-            //     steps.push(stepObj)
-            //     setControl(prev => ({
-            //         ...prev,
-            //         steps: steps
-            //     }));
-            // }
         })
     }
 
     function getSteps(code, currState) {
-        fetch('https://aryabota.herokuapp.com/api/problem?level=' + currentLevel, {
+        fetch(`${BASE_URL[environment]}/api/problem?level=` + currentLevel, {
             crossDomain: true,
             method: 'POST',
             body: JSON.stringify({ commands: code, level: currentLevel.toString(), email: userEmail }),

@@ -92,7 +92,7 @@ ReactDOM.render(
 		<Router className="router">
 			<Switch>
 				<Route path={`/${TOP_LEVEL_PATHS.HOME}`}>
-					<Link className="router" to={`/${TOP_LEVEL_PATHS.GRID}`}>Game</Link>
+					<Link className="router" to={`/${TOP_LEVEL_PATHS.GRID}`} style={{color: 'white'}}>Game</Link>
 					<About />
 				</Route>
 				<Route path={`/${TOP_LEVEL_PATHS.GRID}`}>

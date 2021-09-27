@@ -253,11 +253,11 @@ export default function Controller() {
             />
             <div className="game-info">
                 <div className="problem-div">
-                    <h3>Question:</h3>
+                    <h3>Question</h3>
                     <p id="question">{mazeData.statement}</p>
                     <br />
                 </div>
-                <h3>Enter your code here:</h3>
+                <h3>Your code here</h3>
                 <div className="input-div">
                     <form onSubmit={submitCode}>
                         <div style={{
@@ -312,7 +312,7 @@ export default function Controller() {
                 />
                 <br />
                 <div className="output-div">
-                    <h3 className="output-title">Output:</h3>
+                    <h3 className="output-title">Output</h3>
                     <AceEditor
                         style={{
                             width: '100%',

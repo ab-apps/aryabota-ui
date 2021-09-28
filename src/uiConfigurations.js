@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { GoogleLogout } from 'react-google-login';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './styles/uiConfigurations.css';
 //BUTTON and DROPDOWN COMPONENTS
 import Select from 'react-select';
@@ -31,6 +31,7 @@ import pes_logo_white_text from './assets/pes_logo_white_text.png';
  */
 function UiConfigs(props) {
     const dispatch = useDispatch();
+    const space = useSelector((state) => state.user.space);
     /**
      * color sets the base color of the webpage
      * @var
@@ -280,7 +281,9 @@ function UiConfigs(props) {
                     <ToggleColor />
                     <TogglePane />
                     <InfoButton />
-                    <LogoutButton />
+                    {
+                       space !== "IPS" && <LogoutButton />
+                    }
                 </div>
             </div>
         </div>

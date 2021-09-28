@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import './styles/levelMap.css';
 import { useDispatch, useSelector } from 'react-redux'
 import { setLevel, setLevels } from './reducers/actions';
@@ -18,12 +18,32 @@ import { BASE_URL, environment } from './constants/routeConstants';
  * <UiConfigs />
  */
 function LevelMap(props) {
-
     const dispatch = useDispatch();
     const mazeContext = useContext(MazeState);
     const setMazeData = mazeContext[1];
     const space = useSelector((state) => state.user.space);
-    const [levelMap, setLevelMap] = useState([])
+    const [levelMap, setLevelMap] = useState(undefined)
+
+    const fetchLevelMap = () => {
+        if (levelMap === undefined) {
+            fetch(`${BASE_URL[environment]}/api/level?space=` + space, {
+                crossDomain: true,
+                method: 'GET',
+                headers: {
+                    'Content-type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(response => {
+                    dispatch(setLevels(response))
+                    setLevelMap(response.map(level => {
+                        return <div onClick={(e) => getLevel(e)}>{level}</div>
+                    }))
+                })
+        }
+    }
+
+    useEffect(() => { fetchLevelMap() });
 
     const getLevel = (e) => {
         let level = e.target.textContent;
@@ -56,26 +76,6 @@ function LevelMap(props) {
                 }))
             });
     }
-
-    const fetchLevelMap = () => {
-        fetch(`${BASE_URL[environment]}/api/level?space=` + space, {
-            crossDomain: true,
-            method: 'GET',
-            headers: {
-                'Content-type': 'application/json'
-            }
-        })
-            .then(response => response.json())
-            .then(response => {
-                dispatch(setLevels(response))
-                setLevelMap(response.map(level => {
-                    return <div onClick={(e) => getLevel(e)}>{level}</div>
-                }))
-            })
-    }
-
-    if(levelMap.length === 0)
-        fetchLevelMap()
 
     return (
         <>

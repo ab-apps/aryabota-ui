@@ -18,7 +18,7 @@ import { Constants } from './globalStates';
 import { TOP_LEVEL_PATHS } from './constants/routeConstants';
 import { Provider } from 'react-redux';
 import store from './reducers';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {addEmail, addName, setSpace} from './reducers/actions';
 import { BASE_URL, environment } from './constants/routeConstants';
 import { Button } from '@material-ui/core';
@@ -30,7 +30,6 @@ const failed = (response) => {
 const LoginButton = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
-	const space = useSelector((state) => state.user.space);
 	const routeChangeSecret = () => {
 		dispatch(setSpace('IPS'));
 		let path = TOP_LEVEL_PATHS.HOME;

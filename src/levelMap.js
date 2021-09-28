@@ -23,7 +23,6 @@ function LevelMap(props) {
     const mazeContext = useContext(MazeState);
     const setMazeData = mazeContext[1];
     const space = useSelector((state) => state.user.space);
-    const levels = useSelector((state) => state.user.levels);
     const [levelMap, setLevelMap] = useState([])
 
     const getLevel = (e) => {
@@ -75,7 +74,8 @@ function LevelMap(props) {
             })
     }
 
-    fetchLevelMap()
+    if(levelMap.length === 0)
+        fetchLevelMap()
 
     return (
         <>

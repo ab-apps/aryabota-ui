@@ -13,6 +13,8 @@ import PlayArrowRounded from '@material-ui/icons/PlayArrowRounded';
 import Maze from './mazeGenerator';
 import LevelMap from './levelMap';
 import {BASE_URL, environment} from './constants/routeConstants';
+import {setData} from './reducers/maze/mazeActions';
+import { useDispatch } from 'react-redux';
 
 /**
  * Component for controlling character/player
@@ -25,14 +27,13 @@ import {BASE_URL, environment} from './constants/routeConstants';
  * @example
  * <Controller />
  */
-export default function Controller() {
+const Controller = () => {
     /**
      * Global context / state to manipulate character location, etc.
      * @const
      */
     const [mazeData, setMazeData] = useContext(MazeState);
     // const [pythonicCode, setPythonicCode] = useContext(PythonicCodeState);
-
     const [editorFont, setEditorFont] = useState(14);
     const userEmail = useSelector((state) => state.user.email)
     const currentLevel = useSelector((state) => state.user.currentLevel);
@@ -336,3 +337,5 @@ export default function Controller() {
         </>
     );
 }
+
+export default Controller;

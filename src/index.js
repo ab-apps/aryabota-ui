@@ -20,7 +20,8 @@ import { TOP_LEVEL_PATHS } from './constants/routeConstants';
 import { Provider, useDispatch } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './reducers';
-import { addEmail, addName, setSpace } from './reducers/actions';
+import { setSpace } from './reducers/actions';
+import {addEmail, addName} from './reducers/user/userActions';
 import { BASE_URL, environment } from './constants/routeConstants';
 import { Button } from '@material-ui/core';
 

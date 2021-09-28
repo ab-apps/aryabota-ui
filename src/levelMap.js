@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import './styles/levelMap.css';
 import { useDispatch, useSelector } from 'react-redux'
-import { setLevel, setLevels } from './reducers/actions';
+import { setLevel, setLevels } from './reducers/user/userActions';
 //GLOBAL CONTEXT / STATE
 import { MazeState } from './globalStates';
 import { convertToContinuousNumbering } from './utils';

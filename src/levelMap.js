@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './styles/levelMap.css';
-import { useDispatch } from 'react-redux'
-import { setLevel } from './reducers/actions';
+import { useDispatch, useSelector } from 'react-redux'
+import { setLevel, setLevels } from './reducers/actions';
 //GLOBAL CONTEXT / STATE
 import { MazeState } from './globalStates';
 import { convertToContinuousNumbering } from './utils';
+import { BASE_URL, environment } from './constants/routeConstants';
 
 /**
  * UI Configuration Toolbar Component
@@ -21,15 +22,17 @@ function LevelMap(props) {
     const dispatch = useDispatch();
     const mazeContext = useContext(MazeState);
     const setMazeData = mazeContext[1];
+    const space = useSelector((state) => state.user.space);
+    const levels = useSelector((state) => state.user.levels);
+    const [levelMap, setLevelMap] = useState([])
 
     const getLevel = (e) => {
         let level = e.target.textContent;
-        fetch('https://aryabota.herokuapp.com/api/problem?level=' + level, {
+        fetch(`${BASE_URL[environment]}/api/problem?level=` + level, {
             crossDomain: true,
             method: 'GET',
             headers: {
-                'Content-type': 'application/json',
-                'Content-Security-Policy': 'upgrade-insecure-requests'
+                'Content-type': 'application/json'
             }
         })
             .then(response => response.json())
@@ -55,13 +58,31 @@ function LevelMap(props) {
             });
     }
 
+    const fetchLevelMap = () => {
+        fetch(`${BASE_URL[environment]}/api/level?space=` + space, {
+            crossDomain: true,
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(response => {
+                dispatch(setLevels(response))
+                setLevelMap(response.map(level => {
+                    return <div onClick={(e) => getLevel(e)}>{level}</div>
+                }))
+            })
+    }
+
+    fetchLevelMap()
+
     return (
         <>
             <div className="levelMap">
                 <p>LEVELS</p>
                 <br />
-                <div onClick={(e) => getLevel(e)}>0.1</div>
-                <div onClick={(e) => getLevel(e)}>0.2</div>
+                {levelMap}
             </div>
         </>
     );

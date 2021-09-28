@@ -23,6 +23,10 @@ const userReducer = (state = initialState, action ) => {
         case USER_TYPES.SET_NAME: return {
             ...state,
             fullName: action.payload.fullName
+        };
+        case USER_TYPES.SET_SPACE: return {
+            ...state,
+            space: action.payload.space
         }
         default: return state;
     }

@@ -2,7 +2,9 @@ export const USER_TYPES = {
     SET_EMAIL: 'user/set_email',
     UNSET_EMAIL: 'user/unset_email',
     SET_LEVEL: 'user/set_level',
-    SET_NAME: 'user/set_name'
+    SET_NAME: 'user/set_name',
+    SET_SPACE: 'user/set_space',
+    SET_LEVELS: 'user/set_levels'
 };
 
 export const addEmail = (email) => {
@@ -22,6 +24,20 @@ export const setLevel = (level) => {
     return {
         type: USER_TYPES.SET_LEVEL,
         payload: {level: level}
+    };
+}
+
+export const setSpace = (space) => {
+    return {
+        type: USER_TYPES.SET_SPACE,
+        payload: {space: space}
+    };
+}
+
+export const setLevels = (levels) => {
+    return {
+        type: USER_TYPES.SET_LEVELS,
+        payload: {levels: levels}
     };
 }
 

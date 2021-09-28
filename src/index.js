@@ -19,8 +19,9 @@ import { TOP_LEVEL_PATHS } from './constants/routeConstants';
 import { Provider } from 'react-redux';
 import store from './reducers';
 import { useDispatch } from 'react-redux';
-import {addEmail, addName} from './reducers/actions';
+import {addEmail, addName, setSpace} from './reducers/actions';
 import { BASE_URL, environment } from './constants/routeConstants';
+import { Button } from '@material-ui/core';
 
 const failed = (response) => {
 	console.log("failed:", response);
@@ -29,6 +30,11 @@ const failed = (response) => {
 const LoginButton = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
+	const routeChangeSecret = () => {
+		dispatch(setSpace('IPS'));
+		let path = TOP_LEVEL_PATHS.HOME;
+		history.push(path);
+	}
 
 	const routeChange = (response) => {
 		console.log(`${BASE_URL[environment]}/api/user?email=${response.profileObj.email}`)
@@ -52,12 +58,19 @@ const LoginButton = () => {
 	}
 
 	return (
+		<>
 		<GoogleLogin
 			clientId={Constants.clientId}
 			buttonText="Sign In With Google"
 			onSuccess={routeChange}
 			onFailure={failed}
 		/>
+		<br/><br/>
+		<Button
+			variant="contained"
+			onClick={routeChangeSecret}
+		> Secret Route! </Button>
+		</>
 	)
 }
 

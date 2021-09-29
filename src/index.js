@@ -16,9 +16,9 @@ import SignupForm from './pages/signUpForm';
 // Constants
 import { Constants } from './globalStates';
 import { TOP_LEVEL_PATHS } from './constants/routeConstants';
-import { Provider } from 'react-redux';
-import store from './reducers';
-import { useDispatch } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './reducers';
 import {addEmail, addName, setSpace} from './reducers/actions';
 import { BASE_URL, environment } from './constants/routeConstants';
 import { Button } from '@material-ui/core';
@@ -102,24 +102,26 @@ const Content = () => {
 
 ReactDOM.render(
 	<Provider store={store}>
-		<Router className="router">
-			<Switch>
-				<Route path={`/${TOP_LEVEL_PATHS.HOME}`}>
-					<Link className="router" to={`/${TOP_LEVEL_PATHS.GRID}`} style={{color: 'white'}}>Game</Link>
-					<About />
-				</Route>
-				<Route path={`/${TOP_LEVEL_PATHS.GRID}`}>
-					<Link className="router" to={`/${TOP_LEVEL_PATHS.HOME}`}>Home</Link>
-					<Game />
-				</Route>
-				<Route path={`/${TOP_LEVEL_PATHS.SIGNUP}`}>
-					<SignupForm />
-				</Route>
-				<Route path="/">
-					<Content />
-				</Route>
-			</Switch>
-		</Router>
+		<PersistGate loading={null} persistor={persistor}>
+			<Router className="router">
+				<Switch>
+					<Route path={`/${TOP_LEVEL_PATHS.HOME}`}>
+						<Link className="router" to={`/${TOP_LEVEL_PATHS.GRID}`} style={{color: 'white'}}>Game</Link>
+						<About />
+					</Route>
+					<Route path={`/${TOP_LEVEL_PATHS.GRID}`}>
+						<Link className="router" to={`/${TOP_LEVEL_PATHS.HOME}`}>Home</Link>
+						<Game />
+					</Route>
+					<Route path={`/${TOP_LEVEL_PATHS.SIGNUP}`}>
+						<SignupForm />
+					</Route>
+					<Route path="/">
+						<Content />
+					</Route>
+				</Switch>
+			</Router>
+		</PersistGate>
 	</Provider>
 	, document.getElementById('root')
 );

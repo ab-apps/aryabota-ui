@@ -4,7 +4,8 @@ export const USER_TYPES = {
     SET_LEVEL: 'user/set_level',
     SET_NAME: 'user/set_name',
     SET_SPACE: 'user/set_space',
-    SET_LEVELS: 'user/set_levels'
+    SET_LEVELS: 'user/set_levels',
+    UNSET_ALL: 'user/unset_all'
 };
 
 export const addEmail = (email) => {
@@ -45,5 +46,11 @@ export const addName = (firstName, lastName) => {
     return {
         type: USER_TYPES.SET_NAME,
         payload: {fullName: firstName.concat(' ', lastName)},
+    };
+}
+
+export const clearData = () => {
+    return {
+        type: USER_TYPES.UNSET_ALL,
     };
 }

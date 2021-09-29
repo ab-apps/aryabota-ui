@@ -13,6 +13,7 @@ import About from './pages/about';
 import { Game } from './pages/grid';
 import bot_img from './assets/aryabota-icon.jpeg';
 import SignupForm from './pages/signUpForm';
+// import IPSModal from './modals/IPSModal';
 // Constants
 import { Constants } from './globalStates';
 import { TOP_LEVEL_PATHS } from './constants/routeConstants';
@@ -30,7 +31,7 @@ const failed = (response) => {
 const LoginButton = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
-	const routeChangeSecret = () => {
+	const routeChangeSecret = (response) => {
 		dispatch(setSpace('IPS'));
 		// document.getElementById('IPS_Modal').style.display='none';
 		// routeChange(response);
@@ -39,7 +40,7 @@ const LoginButton = () => {
 	}
 
 	const routeChange = (response) => {
-		console.log(`${BASE_URL[environment]}/api/user?email=${response.profileObj.email}`)
+		dispatch(setSpace('PES'));
 		fetch(`${BASE_URL[environment]}/api/user?email=${response.profileObj.email}`, {
 			crossDomain: true,
 			method: 'GET',
@@ -77,6 +78,9 @@ const LoginButton = () => {
 }
 
 const Content = () => {
+	// let messageModal = null;
+	// const modalMessage = 'hello!';
+	// messageModal = <IPSModal id='IPS_Modal' error_message={modalMessage} />;
 	return (
 		<div className="login-content">
 			<div style={{ display: "flex", flexDirection: "row" }}>
@@ -98,6 +102,7 @@ const Content = () => {
 			<div>
 				<LoginButton />
 			</div>
+			{/* {messageModal} */}
 		</div>
 	)
 }

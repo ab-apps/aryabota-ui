@@ -13,7 +13,8 @@ import PaletteTwoTone from '@material-ui/icons/PaletteTwoTone';
 import FormatSize from '@material-ui/icons/FormatSize';
 import CodeIcon from '@material-ui/icons/Code';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import { removeEmail } from './reducers/actions';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { clearData } from './reducers/actions';
 //MAZE STATE
 import { Constants } from './globalStates';
 //UTILS
@@ -228,7 +229,7 @@ function UiConfigs(props) {
         }
 
         return (
-            <div className="pythonViewer">
+            <div className="infoButton">
                 <InfoOutlinedIcon
                     onClick={onClick}
                 />
@@ -240,7 +241,7 @@ function UiConfigs(props) {
         const history = useHistory();
 
         const logout = (_response) => {
-            dispatch(removeEmail());
+            dispatch(clearData());
             let path = '/';
             history.push(path);
         }
@@ -249,7 +250,7 @@ function UiConfigs(props) {
             <div className="googleLogout">
                 <GoogleLogout
                     render={renderProps => (
-                        <Button variant="contained" startIcon={<CodeIcon />} onClick={renderProps.onClick} disabled={renderProps.disabled}>Logout</Button>
+                        <Button variant="contained" startIcon={<ExitToAppIcon />} onClick={renderProps.onClick} disabled={renderProps.disabled}>Logout</Button>
                     )}
                     clientId={Constants.clientId}
                     buttonText="Logout"

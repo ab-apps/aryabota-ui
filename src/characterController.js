@@ -251,13 +251,14 @@ export default function Controller() {
                 onPenChange={setPenState}
                 onSizeChange={setEditorFont}
             />
-            <div className="game-info">
+
+            <div className="first-pane">
                 <div className="problem-div">
-                    <h3>Question:</h3>
+                    <h3>Question</h3>
                     <p id="question">{mazeData.statement}</p>
                     <br />
                 </div>
-                <h3>Enter your code here:</h3>
+                <h3>Your code here</h3>
                 <div className="input-div">
                     <form onSubmit={submitCode}>
                         <div style={{
@@ -297,7 +298,7 @@ export default function Controller() {
                 </div>
             </div>
             <div className="separator"></div>
-            <div width="200px">
+            <div className="grid-div" width="200px">
                 <Maze
                     x={mazeData.rows}
                     y={mazeData.columns}
@@ -312,7 +313,7 @@ export default function Controller() {
                 />
                 <br />
                 <div className="output-div">
-                    <h3 className="output-title">Output:</h3>
+                    <h3 className="output-title">Output</h3>
                     <AceEditor
                         style={{
                             width: '100%',
@@ -330,7 +331,7 @@ export default function Controller() {
                 </div>
             </div>
             <div className="separator" id="separator-2"></div>
-            <div className="game-info" id="python-pane">
+            <div className="python-div" id="python-pane">
                 <h3>Translated Code: Python</h3>
                 <AceEditor
                     style={{

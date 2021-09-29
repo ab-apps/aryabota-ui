@@ -1,9 +1,9 @@
 import React from 'react';
 //IMPORT SPRITES
-import coinsweeper_img from './assets/bot_arrow.png';
-import obstacle_img from './assets/cross.png'
-import coin_stack from './assets/coin_stack.png'
-import home from './assets/home.png'
+import coinsweeper_img from './assets/botarrow.png';
+import obstacle_img from './assets/crossed.png'
+import coin_stack from './assets/money_bag.png'
+import home from './assets/our_home.png'
 
 /**
  * Component to draw dynamic maze, food and 

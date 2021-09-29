@@ -2,23 +2,33 @@
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-  width: 25vw;
-  height: 70vh;
+  /* width: 25vw; */
+  /* height: 70vh; */
   /* border: 0.5px dotted #3f3e3e; */
   border-radius: 3px;
   user-select: none;
 }
 
-textarea, .editor {  
-font-family: Consolas, monaco, monospace; 
-font-size: 15px;   
-height: 200px;
-width: 116%;
+ .grid-div {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  min-width: 27%;
+  width: 400px;
+  max-width: 400px;
+  height: 70vh;
 }
 
-.submit-area {
+.first-pane, .python-div {
   display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+  min-width: 25%;
+  width: 200px;
+  max-width: 200px;
+  height: 70vh;
 }
+
 
 .input-div {
   /* display: flex; */
@@ -34,6 +44,17 @@ width: 116%;
 
 .output-title {
   background-color: #006b76; /*rgb(139, 195, 74);*/
+}
+
+textarea, .editor {  
+font-family: Consolas, monaco, monospace; 
+font-size: 15px;   
+height: 200px;
+width: 116%;
+}
+
+.submit-area {
+  display: flex;
 }
 
 .separator{

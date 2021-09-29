@@ -43,11 +43,10 @@
 }
 
 .output-title {
-  background-color: #006b76; /*rgb(139, 195, 74);*/
+  background-color: #006b76;
 }
 
 textarea, .editor {  
-font-family: Consolas, monaco, monospace; 
 font-size: 15px;   
 height: 200px;
 width: 116%;

@@ -164,6 +164,7 @@ export default function Controller() {
     }
 
     function getSteps(code, currState) {
+        console.log('currlevel:', currentLevel);
         fetch(`${BASE_URL[environment]}/api/problem?level=` + currentLevel, {
             crossDomain: true,
             method: 'POST',
@@ -175,6 +176,10 @@ export default function Controller() {
         })
             .then(response => response.json())
             .then(response => {
+                setControl(prev => ({
+                    ...prev,
+                    outputValue: []
+                }));
                 parseResponse(response, currState)
             });
     }

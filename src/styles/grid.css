@@ -2,10 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap');
 
 body {
-  /* font-family: 'Oswald', sans-serif; */
   font-family: 'Circular-Loom', "Helvetica", "Arial", sans-serif;
   width: 98vw;
-  background-color: #006b76; /* rgb(139, 195, 74); #fcc663; */
+  background-color: #006b76;
   color: whitesmoke;
   letter-spacing: 0.6px;
   word-spacing: 1.5px;
@@ -54,7 +53,6 @@ h3 {
 
 .game-maze{
   color: #3f3e3e;
-  /* font-family: "Oswald"; */
   /* font-weight: bolder;  */
   user-select: none;
 }
@@ -108,21 +106,6 @@ h3 {
   border-radius: 5px;
 }
 
-.play-info{
-  margin-left: 6%;
-  margin-top: 15%;
-  color: #545657;
-  font-family: 'Nunito', sans-serif;
-}
-
-.tag-line{
-  align-self: center;
-  margin-top: 25%;
-  font-size: 20px;
-  color: #545657;
-  font-family: 'Nunito', sans-serif;
-}
-
 .router {
   top: 50px;
   z-index: 100;
@@ -144,6 +127,10 @@ h3 {
   flex-direction: column;
   align-items: center;
 }
+
+/* .mobile-disclaimer {
+  display: none;
+} */
 
 @media only screen and (max-width: 900px) {
   .game {

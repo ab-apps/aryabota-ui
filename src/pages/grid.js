@@ -99,6 +99,7 @@ export function Game() {
 }
 ReactDOM.render(
   <>
+  <div className="mobile-disclaimer">eee</div>
     <Game />
   </>,
   document.getElementById('root')

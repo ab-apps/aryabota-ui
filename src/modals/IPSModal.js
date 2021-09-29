@@ -3,6 +3,14 @@ import Linkify from 'react-linkify';
 import '../styles/ErrorModal.css';
 import { MazeState } from '../globalStates';
 import Button from '@material-ui/core/Button';
+import { TOP_LEVEL_PATHS } from '../constants/routeConstants';
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link,
+	useHistory
+} from "react-router-dom";
 
 /**
  * UI Configuration Toolbar Component
@@ -19,20 +27,27 @@ function IPSModal(props) {
     const [mazeData, setMazeData] = useContext(MazeState);
 
     const dismissModal = () => {
-        console.log('IPS modal dismissed');
+        // <Link className="router" to={`/${TOP_LEVEL_PATHS.GRID}`} style={{color: 'white'}}>Game</Link>
     }
     return (
-        <div className="modal" onClick={dismissModal}>
+        <div className="modal">
             <div className="modal-content">
-                <Linkify>
-                    <div>{props.error_message}</div>
-                </Linkify>
-                <Button
-                    variant="contained"
-                    color="secondary"
-                    onClick={dismissModal}>
-                    OK
-                </Button>
+                <form onSubmit={(e) => props.onClick(this, e)}>
+                    <label>Roll No:</label>
+                    <input type="text" name="rollno" id="rollno"></input>
+                    <br /><br />
+                    <label>Password:</label>
+                    <input type="password" name="pwd" id="pwd"></input>
+                    <br /><br />
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        type="submit"
+                        >
+                        OK
+                    </Button>
+                </form>
+
             </div>
         </div>
     )

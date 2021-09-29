@@ -5,7 +5,8 @@ import userReducer from './user';
 
 const persistConfig = {
     key: 'root',
-    storage: localStorage
+    storage: localStorage,
+    blacklist: ['currentLevel']
   }
 
 const rootReducer = combineReducers({

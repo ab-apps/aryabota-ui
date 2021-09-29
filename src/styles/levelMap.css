@@ -1,16 +1,16 @@
 .levelMap {
-    height: 100%;
+    /* height: 120%; */
     width: 5%;
     min-width: 70px;
-    position: fixed;
+    position: relative;
     z-index: 5;
-    top: 75px;
-    left: 0;
+    top: 0;
+    left: -21px;
     background-color: #0c3336;
     color: whitesmoke;
     transition:  .5s ease;
     overflow-x: hidden;
-    padding-top: 20px;
+    padding: 20px 0;
     flex-shrink: 2;
     display: flex;
     flex-direction: column;
@@ -19,4 +19,25 @@
 
 .hide {
     display: none;
+}
+
+.levelList {
+    height: 40px;
+    width: 40px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    background-color: #d5d5d5;
+    cursor: pointer;
+}
+
+.levelList:hover {
+    background-color: #ebbb1e;
+    color: black;
+    font-weight: bold;
 }

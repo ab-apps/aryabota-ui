@@ -32,7 +32,9 @@ const LoginButton = () => {
 	const dispatch = useDispatch();
 	const routeChangeSecret = () => {
 		dispatch(setSpace('IPS'));
-		let path = TOP_LEVEL_PATHS.HOME;
+		// document.getElementById('IPS_Modal').style.display='none';
+		// routeChange(response);
+		let path = TOP_LEVEL_PATHS.SIGNUP;
 		history.push(path);
 	}
 

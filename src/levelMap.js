@@ -37,7 +37,7 @@ function LevelMap(props) {
                 .then(response => {
                     dispatch(setLevels(response))
                     setLevelMap(response.map(level => {
-                        return <div onClick={(e) => getLevel(e)}>{level}</div>
+                        return <div className="levelList" onClick={(e) => getLevel(e)}>{level}</div>
                     }))
                 })
         }
@@ -81,7 +81,6 @@ function LevelMap(props) {
         <>
             <div className="levelMap">
                 <p>LEVELS</p>
-                <br />
                 {levelMap}
             </div>
         </>

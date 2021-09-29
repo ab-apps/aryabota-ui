@@ -13,7 +13,7 @@ import About from './pages/about';
 import { Game } from './pages/grid';
 import bot_img from './assets/aryabota-icon.jpeg';
 import SignupForm from './pages/signUpForm';
-import IPSModal from './modals/IPSModal';
+// import IPSModal from './modals/IPSModal';
 // Constants
 import { Constants } from './globalStates';
 import { TOP_LEVEL_PATHS } from './constants/routeConstants';
@@ -78,9 +78,9 @@ const LoginButton = () => {
 }
 
 const Content = () => {
-	let messageModal = null;
-	const modalMessage = 'hello!';
-	messageModal = <IPSModal id='IPS_Modal' error_message={modalMessage} />;
+	// let messageModal = null;
+	// const modalMessage = 'hello!';
+	// messageModal = <IPSModal id='IPS_Modal' error_message={modalMessage} />;
 	return (
 		<div className="login-content">
 			<div style={{ display: "flex", flexDirection: "row" }}>

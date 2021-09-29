@@ -28,6 +28,13 @@ const userReducer = (state = initialState, action ) => {
             ...state,
             space: action.payload.space
         }
+        case USER_TYPES.UNSET_ALL: return {
+            ...state,
+            space: '',
+            email: '',
+            fullName: '',
+            currentLevel: 0.1
+        }
         default: return state;
     }
 }

@@ -14,7 +14,7 @@ import FormatSize from '@material-ui/icons/FormatSize';
 import CodeIcon from '@material-ui/icons/Code';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { removeEmail } from './reducers/actions';
+import { clearData } from './reducers/actions';
 //MAZE STATE
 import { Constants } from './globalStates';
 //UTILS
@@ -241,7 +241,7 @@ function UiConfigs(props) {
         const history = useHistory();
 
         const logout = (_response) => {
-            dispatch(removeEmail());
+            dispatch(clearData());
             let path = '/';
             history.push(path);
         }

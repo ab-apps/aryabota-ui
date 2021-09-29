@@ -20,7 +20,7 @@ const SignupForm = () => {
 
     const registerUser = event => {
         event.preventDefault();
-        var formData = new FormData(document.getElementById('sign-up-form'))
+        // var formData = new FormData(document.getElementById('sign-up-form'))
         fetch('http://localhost:5000/api/user', {
             crossDomain: true,
             method: 'POST',

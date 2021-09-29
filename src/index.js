@@ -6,6 +6,7 @@ import {
 	Link,
 	useHistory
 } from "react-router-dom";
+import { Provider } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
 import './styles/index.css';
 import React from 'react';
@@ -16,7 +17,6 @@ import SignupForm from './pages/signUpForm';
 // Constants
 import { Constants } from './globalStates';
 import { TOP_LEVEL_PATHS } from './constants/routeConstants';
-import { Provider } from 'react-redux';
 import store from './reducers';
 import { useDispatch } from 'react-redux';
 import {addEmail, addName, setSpace} from './reducers/actions';

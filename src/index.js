@@ -31,9 +31,11 @@ const failed = (response) => {
 const Content = () => {
 	const [modal, showModal] = useState(false);
 
-	const IpsFormValidator = (that, e) => {
-		e.preventDefault();
-		console.log('that', that);
+	const IpsFormValidator = (password, roll_number) => {
+		if(password === "ips1234") {
+			dispatch(addEmail(roll_number));
+			routeChange(roll_number);
+		}
 		showModal(false)
 	}
 
@@ -43,12 +45,9 @@ const Content = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
 
-	const routeChangeSecret = (response) => {
+	const routeChangeSecret = () => {
 		dispatch(setSpace('IPS'));
 		showModal(true);
-		dispatch(addEmail());
-
-		// routeChange(response);
 	}
 
 	const routeChangePES = (response) => {

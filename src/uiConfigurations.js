@@ -18,7 +18,7 @@ import { clearData } from './reducers/actions';
 //MAZE STATE
 import { Constants } from './globalStates';
 //UTILS
-import pes_logo_white_text from './assets/pes_logo_white_text.png';
+import aryabota_logo from './assets/aryabota_icon.jpg';
 
 /**
  * UI Configuration Toolbar Component
@@ -276,7 +276,7 @@ function UiConfigs(props) {
             </style>
             <div className="toolbar" id="toolbar-div">
                 <div className="configs">
-                    <img className="pes-logo" alt="PES University Logo" src={pes_logo_white_text} height="45px" />
+                    <img className="logo" alt="AryaBota Logo" src={aryabota_logo} height="45px" />
                     <ToggleSize />
                     <ToggleColor />
                     <TogglePane />

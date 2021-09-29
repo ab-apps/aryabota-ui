@@ -65,8 +65,9 @@
   column-gap: 3%;
 }
 
-.pes-logo {
+.logo {
   position: fixed;
-  top:  1.5vh;
-  left: 2%;
+  height: 75px;
+  /* top:  1.5vh; */
+  left: 0%;
 }

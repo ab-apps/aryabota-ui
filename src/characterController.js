@@ -164,7 +164,6 @@ export default function Controller() {
     }
 
     function getSteps(code, currState) {
-        console.log('currlevel:', currentLevel);
         fetch(`${BASE_URL[environment]}/api/problem?level=` + currentLevel, {
             crossDomain: true,
             method: 'POST',

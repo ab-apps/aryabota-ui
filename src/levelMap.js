@@ -2,6 +2,8 @@ import React, { useContext, useState, useEffect } from 'react';
 import './styles/levelMap.css';
 import { useDispatch, useSelector } from 'react-redux'
 import { setLevel, setLevels } from './reducers/actions';
+import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
 //GLOBAL CONTEXT / STATE
 import { MazeState } from './globalStates';
 import { convertToContinuousNumbering } from './utils';
@@ -24,6 +26,16 @@ function LevelMap(props) {
     const space = useSelector((state) => state.user.space);
     const [levelMap, setLevelMap] = useState(undefined)
 
+    const RoundButton = styled(Button)({
+        borderRadius: '100%',
+        margin: '5px',
+        backgroundColor: '#BDBDBD',
+        color: '#212121',
+        '&:hover': {
+            backgroundColor: '#9E9E9E'
+        }
+    })
+
     const fetchLevelMap = () => {
         if (levelMap === undefined) {
             fetch(`${BASE_URL[environment]}/api/level?space=` + space, {
@@ -37,7 +49,7 @@ function LevelMap(props) {
                 .then(response => {
                     dispatch(setLevels(response))
                     setLevelMap(response.map(level => {
-                        return <div onClick={(e) => getLevel(e)}>{level}</div>
+                        return <RoundButton onClick={(e) => getLevel(e)}>{level}</RoundButton>
                     }))
                 })
         }

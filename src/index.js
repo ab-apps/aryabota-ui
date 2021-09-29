@@ -123,7 +123,6 @@ ReactDOM.render(
 						<About />
 					</Route>
 					<Route path={`/${TOP_LEVEL_PATHS.GRID}`}>
-						{/* <Link className="router" to={`/${TOP_LEVEL_PATHS.HOME}`}>Home</Link> */}
 						<Game />
 					</Route>
 					<Route path={`/${TOP_LEVEL_PATHS.SIGNUP}`}>

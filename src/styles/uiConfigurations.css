@@ -16,17 +16,22 @@
 
 
 .colorSelector button, .sizeSelector button, .levelSelector button, 
-.penToggle button, .googleLogout button {
-  width: 150px;
+.penToggle button, .googleLogout button, .pythonViewer button {
+  width: 140px;
   background-color: #d5d5d5;
   color: black;
 }
 
+.googleLogout button {
+  width: 110px;
+}
 
 .pythonViewer button {
-  width: 180px;
-  background-color: #d5d5d5;
-  color: black;
+  width: 170px;
+}
+
+.infoButton:hover {
+  color: rgb(148, 148, 148);
 }
 
 .resetButton button {
@@ -37,7 +42,7 @@
 
 .colorSelector button:hover, .sizeSelector button:hover, .levelSelector button:hover, 
 .penToggle button:hover, .resetButton button:hover, .pythonViewer button:hover,
- .googleLogout button:hover{
+ .googleLogout button:hover {
   color: black;
   background-color: rgb(148, 148, 148);
 }

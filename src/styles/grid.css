@@ -89,6 +89,7 @@ h3 {
 
 .grid-container {
   margin-top: 20px;
+  align-self: center;
 }
 
 .score{
@@ -146,10 +147,15 @@ h3 {
 
 @media only screen and (max-width: 900px) {
   .game {
-    flex-direction: column;
+    display: none;
+    /* flex-direction: column; */
   }
 
   .separator {
     display: none;
+  }
+
+  .mobile-disclaimer {
+    display: block;
   }
 }

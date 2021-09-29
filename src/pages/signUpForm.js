@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/signUpForm.css';
 import { TOP_LEVEL_PATHS } from '../constants/routeConstants';
 import { useHistory } from 'react-router';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { Constants } from '../globalStates';
 import { BASE_URL, environment } from '../constants/routeConstants';
@@ -11,17 +11,19 @@ const SignupForm = () => {
 	// Pass the useFormik() hook initial form values and a submit function that will
 	// be called when the form is submitted
 	const history = useHistory();
+	const dispatch = useDispatch();
 	const userEmail = useSelector((state) => state.user.email)
 	const userName = useSelector((state) => state.user.fullName)
+	const space = useSelector((state) => state.user.space);
 
 	const registerUser = values => {
-        fetch(`${BASE_URL[environment]}/api/user`, {
+		fetch(`${BASE_URL[environment]}/api/user`, {
 			crossDomain: true,
 			method: 'POST',
 			body: JSON.stringify({ email: userEmail, ...values }),
 			headers: {
-                'Content-type': 'application/json',
-                'Content-Security-Policy': 'upgrade-insecure-requests'
+				'Content-type': 'application/json',
+				'Content-Security-Policy': 'upgrade-insecure-requests'
 			}
 		})
 			.then(response => response.json())
@@ -45,6 +47,7 @@ const SignupForm = () => {
 
 	const formik = useFormik({
 		initialValues: {
+			rollno: '',
 			age: '',
 			gender: '',
 			stream: '',
@@ -57,15 +60,41 @@ const SignupForm = () => {
 		},
 	});
 
+	const showValue = (x) => {
+		document.getElementById("skills_div").innerHTML = x.target.value;
+	}
+
 	return (
 		<>
 			<div className="sign-up-form">
-				<div className="intro-text">
-				<span>Welcome {userName}!</span>
-				<div className="disclaimer">{Constants.disclaimer}</div>
-				</div>
 				<form onSubmit={formik.handleSubmit}>
+					<div className="intro-text">
+						<span>Welcome {userName}!</span>
+						<div className="disclaimer">{Constants.disclaimer}
+							<br />
+							<input type="checkbox" required /> I agree to these terms
+						</div>
+
+					</div>
+
 					<ul className="form-style-1">
+						{
+							space !== "IPS"
+								? null
+								: <li>
+									<label>Roll Number <span className="required">*</span></label>
+									<input
+										id="rollno"
+										type="text"
+										name="rollno"
+										onChange={formik.handleChange}
+										value={formik.values.rollno}
+										className="field-divided"
+										required
+									/>
+								</li>
+
+						}
 						<li>
 							<label>Age <span className="required">*</span></label>
 							<input
@@ -92,9 +121,8 @@ const SignupForm = () => {
 							</div>
 						</li>
 						<li>
-							<label>If you are a student, please tell us which course you are enrolled in</label>
-							{/* <select name="field4" class="field-select"> */}
-							<input type="radio" name="stream" value="CS" onChange={formik.handleChange} />B.Tech - Computer Science <br />
+							<label>Please tell us which course you are enrolled in<span className="required"> *</span></label>
+							<input type="radio" required name="stream" value="CS" onChange={formik.handleChange} />B.Tech - Computer Science <br />
 							<input type="radio" name="stream" value="IS" onChange={formik.handleChange} />B.Tech - Information Science <br />
 							<input type="radio" name="stream" value="ECE" onChange={formik.handleChange} />B.Tech - Electronics & Communication <br />
 							<input type="radio" name="stream" value="EEE" onChange={formik.handleChange} />B.Tech - Electrical & Electronics <br />
@@ -114,8 +142,14 @@ const SignupForm = () => {
 							<input type="radio" name="progExp" value="both" onChange={formik.handleChange} />Exposure to programming both in and outside school <br />
 						</li>
 						<li>
-							<label>How would you rate your programming skills? (between 0 and 5) <span className="required">*</span></label>
-							<input required type="number" min={0} max={5} name="skills" onChange={formik.handleChange} className="field-divided" />
+							<label>How would you rate your programming skills? <span className="required">*</span>
+								<br />
+								(0 = No Experience, 5 = Proficient)
+							</label>
+							<div className="field-divided" style={{ textAlign: 'center' }} id="skills_div">3</div>
+							0
+							<input required type="range" min={0} max={5} step="1" name="skills" id="skills_value" onClick={showValue} onChange={formik.handleChange} className="field-divided" />
+							5
 						</li>
 						<li>
 							<label>If you know programming, which language(s) do you know?</label>

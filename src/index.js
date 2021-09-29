@@ -6,7 +6,6 @@ import {
 	Link,
 	useHistory
 } from "react-router-dom";
-import { Provider } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
 import './styles/index.css';
 import React from 'react';
@@ -33,7 +32,9 @@ const LoginButton = () => {
 	const dispatch = useDispatch();
 	const routeChangeSecret = () => {
 		dispatch(setSpace('IPS'));
-		let path = TOP_LEVEL_PATHS.HOME;
+		// document.getElementById('IPS_Modal').style.display='none';
+		// routeChange(response);
+		let path = TOP_LEVEL_PATHS.SIGNUP;
 		history.push(path);
 	}
 

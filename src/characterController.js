@@ -251,7 +251,6 @@ export default function Controller() {
                 onPenChange={setPenState}
                 onSizeChange={setEditorFont}
             />
-
             <div className="game-info">
                 <div className="problem-div">
                     <h3>Question:</h3>

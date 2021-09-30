@@ -65,9 +65,10 @@ export default function Maze(props) {
     let classnames = "penUp";
     let blockImg = null;
     let rotation = '0';
-    if (props?.positionsSeen?.indexOf(blockCount) >= 0
-      && props?.positionsSeen?.indexOf(blockCount) !== -1) {
-      // classnames = props.penStatus ? "penUp" : "penDown";
+    // console.log(blockCount)
+    // console.log(props.positionsSeen)
+    if (props?.positionsSeen?.indexOf(blockCount) >= 0) {
+        classnames = "penDown";
     }
     if (props.coinSweeper === blockCount) {
       switch (props.currentDirection) {
@@ -84,9 +85,6 @@ export default function Maze(props) {
       blockImg = coin_stack;
     } else if (props.home.indexOf(blockCount) !== -1) {
       blockImg = home;
-    }
-    if (props.penLoc.indexOf(blockCount) !== -1) {
-      classnames = "penDown";
     }
     return <Block 
       value = {blockCount} 

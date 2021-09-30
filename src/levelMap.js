@@ -64,15 +64,12 @@ function LevelMap(props) {
                     coinSweeper: convertToContinuousNumbering(response?.row, response?.column, response?.columns),
                     coinLoc: response?.coins?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
                     obstacleLoc: response?.obstacles?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
-                    positionsSeen: response?.trail?.map(trailObj => convertToContinuousNumbering(trailObj?.row, trailObj?.column, response?.columns)),
+                    positionsSeen: response?.coloured?.map(trailObj => convertToContinuousNumbering(trailObj.position.row, trailObj.position.column, response?.columns)),
                     currentDirection: response?.dir,
                     levelType: response?.type,
                     home: response?.homes?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
                     statement: response?.statement,
-                    problemSpec: response?.problem_spec,
-                    //TODO: Might want to set these two values from backend
-                    penLoc: [1],
-                    prevSteps: 1
+                    problemSpec: response?.problem_spec
                 }))
             });
     }

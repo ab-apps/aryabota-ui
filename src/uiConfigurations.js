@@ -18,7 +18,7 @@ import { clearData } from './reducers/actions';
 //MAZE STATE
 import { Constants } from './globalStates';
 //UTILS
-import aryabota_logo from './assets/aryabota_icon.jpg';
+import aryabota_logo from './assets/aryabota-logo.png';
 
 /**
  * UI Configuration Toolbar Component
@@ -264,9 +264,10 @@ function UiConfigs(props) {
         <div>
             <style>
                 {
-                    'body { background-color: ' + color + '; color: ' + LightenDarkenColor(color, -85) + ';}'
+                    'body { background-color: ' + color + '; color: ' + LightenDarkenColor(color, -95) + ';}'
                     + '.toolbar { background-color: ' + LightenDarkenColor(color, -35) + ';}'
                     + '.output-title {background-color: ' + color + ';}'
+                    + '.levelMap {background-color: ' + LightenDarkenColor(color, -65) + ';}'
                     + (sizes === "Small" ? 'p { font-size: small;} h3 { font-size: large; } .status { font-size: 22px; } textarea { font-size: 13px;}' :
                         sizes === "Medium" ? 'p { font-size: medium;} h3 { font-size: larger; } .status { font-size: 25px; } textarea { font-size: 15px;}' :
                             sizes === "Large" ? 'p { font-size: larger;} h3 { font-size: x-large; } .status { font-size: 30px; } textarea { font-size: 17px;}' :

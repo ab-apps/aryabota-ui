@@ -118,7 +118,7 @@ ReactDOM.render(
 			<Router className="router">
 				<Switch>
 					<Route path={`/${TOP_LEVEL_PATHS.HOME}`}>
-						<Link className="router" to={`/${TOP_LEVEL_PATHS.GRID}`} style={{ color: 'white' }}>Game</Link>
+						Click <Link className="router" to={`/${TOP_LEVEL_PATHS.GRID}`} style={{ color: 'rgb(57, 252, 39)' }}>HERE</Link> to start solving puzzles with AryaBota!
 						<About />
 					</Route>
 					<Route path={`/${TOP_LEVEL_PATHS.GRID}`}>

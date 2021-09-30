@@ -1,3 +1,13 @@
 body {
-    background-color: #006b76; /* rgb(139, 195, 74); #fcc663; */
+    background-color: #006b76;
+}
+
+.hrefs {
+    text-decoration: none;
+    color: rgb(57, 252, 39);
+}
+
+.hrefs:hover {
+    text-decoration: none;
+    font-weight: bold;
 }

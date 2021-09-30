@@ -52,6 +52,10 @@ height: 200px;
 width: 116%;
 }
 
+.runButton:hover Button {
+  background-color: rgb(148, 148, 148);
+}
+
 .submit-area {
   display: flex;
 }

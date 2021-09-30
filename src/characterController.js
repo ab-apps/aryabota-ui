@@ -8,8 +8,6 @@ import './styles/characterController.css';
 import { MazeState } from './globalStates';
 import { convertToContinuousNumbering } from './utils';
 import UiConfigs from './uiConfigurations';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import { blueGrey } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
 import PlayArrowRounded from '@material-ui/icons/PlayArrowRounded';
 import Maze from './mazeGenerator';
@@ -236,12 +234,6 @@ export default function Controller() {
         resetGrid();
     }
 
-    const theme = createTheme({
-        palette: {
-            primary: blueGrey,
-        },
-    });
-
     let [editorValue, setEditorValue] = useState('');
     function onChange(newValue) {
         setEditorValue(newValue);
@@ -283,21 +275,25 @@ export default function Controller() {
                             />
                         </div>
 
-                        <ThemeProvider theme={theme}>
+                        <div className="runButton">
                             <Button
                                 style={{
                                     marginTop: '30px',
                                     float: 'right',
-                                    marginRight: '4%'
+                                    width: 'fit-content',
+                                    marginRight: '4%',
+                                    color: 'black',
+                                    backgroundColor: '#d5d5d5'
                                 }}
                                 type="submit"
                                 variant="contained"
-                                color="primary"
+                                // color="primary"
+                                
                                 endIcon={<PlayArrowRounded />}
                             >
                                 Run
                             </Button>
-                        </ThemeProvider>
+                        </div>
                     </form>
                 </div>
             </div>

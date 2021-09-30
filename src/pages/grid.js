@@ -1,13 +1,13 @@
-import ReactDOM from 'react-dom';
+import React, { useLayoutEffect } from 'react';
 import '../styles/grid.css';
-import React, { useState, useLayoutEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setData } from '../reducers/maze/mazeActions';
 //UTILITY FUNCTIONS SCRIPT
 import { convertToContinuousNumbering } from '../utils';
 //CHARACTER CONTROLLER COMPONENT
 import Controller from '../characterController';
 import MessageModal from '../modals/MessageModal';
 //GLOBAL CONTEXT / STATE
-import { MazeState } from '../globalStates';
 import { BASE_URL, environment } from '../constants/routeConstants';
 
 /**
@@ -20,12 +20,13 @@ import { BASE_URL, environment } from '../constants/routeConstants';
  * @example
  * <Game />
  */
-export function Game() {
+ const Game = () => {
   /**
    * mazeData contains the entire state of the maze
    * @const
    */
-  const [mazeData, setMazeData] = useState({});
+  const dispatch = useDispatch();
+  const mazeData = useSelector(state => state.maze);
 
   /**
    * Game's useEffect:
@@ -46,8 +47,7 @@ export function Game() {
     })
       .then(response => response.json())
       .then(response => {
-        setMazeData(mazeData => ({
-          ...mazeData,
+        dispatch(setData({
           rows: response?.rows,
           columns: response?.columns,
           coinSweeper: convertToContinuousNumbering(response?.row, response?.column, response?.columns),
@@ -59,9 +59,9 @@ export function Game() {
           home: response?.homes?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
           statement: response?.statement,
           problemSpec: response?.problem_spec
-        }))
+        }));
       });
-  }, []);
+  }, [dispatch]);
 
   //check if player location is generated
   let maze;
@@ -73,14 +73,12 @@ export function Game() {
     messageModal = <MessageModal error_message={modalMessage} />;
   }
   if (mazeData.coinSweeper) {
-    //set maze and controller component with required props
+    // set maze and controller component with required props
     maze = (
       <>
         <div className="game">
-          <MazeState.Provider value={[mazeData, setMazeData]}>
             {messageModal}
             <Controller />
-          </MazeState.Provider>
         </div>
       </>
     );
@@ -94,10 +92,12 @@ export function Game() {
     </>
   );
 }
-ReactDOM.render(
-  <>
-  <div className="mobile-disclaimer">eee</div>
-    <Game />
-  </>,
-  document.getElementById('root')
-);
+
+export default Game;
+// ReactDOM.render(
+//   <>
+//     <div className="mobile-disclaimer">eee</div>
+//     <Game />
+//   </>,
+//   document.getElementById('root')
+// );

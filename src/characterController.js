@@ -1,19 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-github";
 import './styles/characterController.css';
-//GLOBAL CONTEXT / STATE
-import { MazeState } from './globalStates';
 import { convertToContinuousNumbering } from './utils';
 import UiConfigs from './uiConfigurations';
 import Button from '@material-ui/core/Button';
 import PlayArrowRounded from '@material-ui/icons/PlayArrowRounded';
 import Maze from './mazeGenerator';
 import LevelMap from './levelMap';
-import {BASE_URL, environment} from './constants/routeConstants';
-import {setData} from './reducers/maze/mazeActions';
+import { BASE_URL, environment } from './constants/routeConstants';
+import { setData, setError, setState, successMessage } from './reducers/maze/mazeActions';
 import { useDispatch } from 'react-redux';
 
 /**
@@ -32,8 +30,8 @@ const Controller = () => {
      * Global context / state to manipulate character location, etc.
      * @const
      */
-    const [mazeData, setMazeData] = useContext(MazeState);
-    // const [pythonicCode, setPythonicCode] = useContext(PythonicCodeState);
+     const dispatch = useDispatch();
+     const mazeData = useSelector(state => state.maze);
     const [editorFont, setEditorFont] = useState(14);
     const userEmail = useSelector((state) => state.user.email)
     const currentLevel = useSelector((state) => state.user.currentLevel);
@@ -59,25 +57,14 @@ const Controller = () => {
         if (control.steps.length > 0) {
             const currStep = control.steps[0]
             if (currStep?.stateChanges?.length > 0) {
-                const change = currStep.stateChanges[0]
-                setMazeData(prev => ({
-                    ...prev,
-                    ...change,
-                    error_message: null,
-                }))
+                const change = currStep.stateChanges[0];
+                dispatch(setState(change));
                 currStep.stateChanges.shift()
             } else if (currStep.error_message) {
-                setMazeData(prev => ({
-                    ...prev,
-                    error_message: currStep.error_message
-                }))
+                dispatch(setError(currStep.error_message));
                 control.steps.shift();
             } else if (currStep.message) {
-                setMazeData(prev => ({
-                    ...prev,
-                    succeeded: currStep.succeeded,
-                    message: currStep.message
-                }))
+                dispatch(successMessage(currStep.succeeded, currStep.message));
                 control.steps.shift();
             }
             else {
@@ -168,20 +155,19 @@ const Controller = () => {
         })
             .then(response => response.json())
             .then(response => {
-                setMazeData(mazeData => ({
-                    ...mazeData,
+                dispatch(setData({
                     rows: response?.rows,
                     columns: response?.columns,
                     coinSweeper: convertToContinuousNumbering(response?.row, response?.column, response?.columns),
                     coinLoc: response?.coins?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
                     obstacleLoc: response?.obstacles?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
-                    positionsSeen: [],
+                    positionsSeen: response?.coloured?.map(trailObj => convertToContinuousNumbering(trailObj.position.row, trailObj.position.column, response?.columns)),
                     currentDirection: response?.dir,
                     levelType: response?.type,
                     home: response?.homes?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
                     statement: response?.statement,
                     problemSpec: response?.problem_spec
-                }));
+                  }));
             });
 
         fetch(`${BASE_URL[environment]}/api/problem?level=` + currentLevel, {

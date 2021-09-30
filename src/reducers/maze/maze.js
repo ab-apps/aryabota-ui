@@ -11,10 +11,11 @@ const initialState = {
     obstacles_per_position: [],
     pen: 'down',
     row: '',
-    rows: '',
+    column: '',
     statement: '',
     trail: [],
     type: '',
+    error_message: ''
 }
 
 const mazeReducer = (state = initialState, action) => {
@@ -29,9 +30,33 @@ const mazeReducer = (state = initialState, action) => {
         };
         case MAZE_TYPES.UPDATE_POS: return {
             ...state,
-            row: action.payload.row_pos,
-            column: action.payload.column
+            row: action.payload.rowPos,
+            column: action.payload.colPos
         };
+        case MAZE_TYPES.SET_ERR: return {
+            ...state,
+            error_message: action.payload.errorMessage
+        };
+        case MAZE_TYPES.UNSET_ERR: return {
+            ...state,
+            error_message: ''
+        };
+        case MAZE_TYPES.SET_STATE: return {
+            ...state,
+            ...action.payload.change,
+            error_message: ''
+        }
+        case MAZE_TYPES.SUCCESS_MSG: return {
+            ...state,
+            succeeded: action.payload.succeeded,
+            message: action.payload.message
+        }
+        case MAZE_TYPES.DISMISS_MODAL: return {
+            ...state,
+            error_message: '',
+            message: '',
+            succeeded: '',
+        }
         default: return state;
     }
 }

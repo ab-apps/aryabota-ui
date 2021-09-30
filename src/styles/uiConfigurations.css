@@ -72,6 +72,6 @@
 .logo {
   position: fixed;
   height: 75px;
-  /* top:  1.5vh; */
   left: 0%;
+  cursor: pointer;
 }

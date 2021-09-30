@@ -238,6 +238,18 @@ function UiConfigs(props) {
         )
     }
 
+    const ABLogo = () => {
+        const history = useHistory();
+        const onClick = () => {
+            let path = 'home';
+            history.push(path);
+        }
+
+        return (
+            <img className="logo" alt="AryaBota Logo" src={aryabota_logo} height="45px" onClick={onClick} />
+        )
+    }
+
     const LogoutButton = () => {
         const history = useHistory();
 
@@ -278,7 +290,7 @@ function UiConfigs(props) {
             </style>
             <div className="toolbar" id="toolbar-div">
                 <div className="configs">
-                    <img className="logo" alt="AryaBota Logo" src={aryabota_logo} height="45px" />
+                    <ABLogo />
                     <ToggleSize />
                     <ToggleColor />
                     <TogglePane />

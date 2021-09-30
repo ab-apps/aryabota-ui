@@ -8,6 +8,7 @@ import Select from 'react-select';
 import Button from '@material-ui/core/Button';
 //COLOUR PICKER
 import { GithubPicker } from 'react-color';
+import { useSelector } from 'react-redux';
 //MATERIAL UI ICONS FOR CONFIG BUTTONS
 import PaletteTwoTone from '@material-ui/icons/PaletteTwoTone';
 import FormatSize from '@material-ui/icons/FormatSize';
@@ -32,6 +33,7 @@ import aryabota_logo from './assets/aryabota-logo.png';
  */
 function UiConfigs(props) {
     const dispatch = useDispatch();
+    const space = useSelector((state) => state.user.space);
     /**
      * color sets the base color of the webpage
      * @var
@@ -261,14 +263,18 @@ function UiConfigs(props) {
 
         return (
             <div className="googleLogout">
-                <GoogleLogout
-                    render={renderProps => (
-                        <Button variant="contained" startIcon={<ExitToAppIcon />} onClick={renderProps.onClick} disabled={renderProps.disabled}>Logout</Button>
-                    )}
-                    clientId={Constants.clientId}
-                    buttonText="Logout"
-                    onLogoutSuccess={logout}
-                />
+                {space !== "IPS"
+                    ? <GoogleLogout
+                        render={renderProps => (
+                            <Button variant="contained" startIcon={<ExitToAppIcon />} onClick={renderProps.onClick} disabled={renderProps.disabled}>Logout</Button>
+                        )}
+                        clientId={Constants.clientId}
+                        buttonText="Logout"
+                        onLogoutSuccess={logout}
+                    />
+                    : <Button variant="contained" startIcon={<ExitToAppIcon />} onClick={logout}>Logout</Button>
+                }
+
             </div>
         )
     }

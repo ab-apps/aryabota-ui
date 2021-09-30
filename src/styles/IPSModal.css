@@ -1,0 +1,25 @@
+@import './styleConstants.css';
+
+/* The Modal (background) */
+.modal {
+    position: fixed; /* Stay in place */
+    z-index: var(--modal-z-index); /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    color: black;
+  }
+  
+.modal-content {
+    font-size: 80%;
+    margin: 17% auto;
+    padding: 20px;
+    width: 17%;
+    min-width: fit-content;
+    height: fit-content;
+    row-gap: 5%;
+    font-family: 'Circular-Loom', "Helvetica", "Arial", sans-serif;
+  }

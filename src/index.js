@@ -32,11 +32,14 @@ const Content = () => {
 	const [modal, showModal] = useState(false);
 
 	const IpsFormValidator = (password, roll_number) => {
-		if(password === "ips1234") {
+		if (password === "ips1234") {
 			dispatch(addEmail(roll_number));
 			routeChange(roll_number);
 		}
-		showModal(false)
+		else {
+			alert('Incorrect Password! Please try again.');
+		}
+		showModal(false);
 	}
 
 	let messageModal = null;

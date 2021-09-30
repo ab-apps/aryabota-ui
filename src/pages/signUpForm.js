@@ -13,7 +13,6 @@ const SignupForm = () => {
 	const history = useHistory();
 	const userEmail = useSelector((state) => state.user.email)
 	const userName = useSelector((state) => state.user.fullName)
-	const space = useSelector((state) => state.user.space);
 
 	const registerUser = values => {
 		fetch(`${BASE_URL[environment]}/api/user`, {
@@ -77,23 +76,6 @@ const SignupForm = () => {
 					</div>
 
 					<ul className="form-style-1">
-						{
-							space !== "IPS"
-								? null
-								: <li>
-									<label>Roll Number <span className="required">*</span></label>
-									<input
-										id="rollno"
-										type="text"
-										name="rollno"
-										onChange={formik.handleChange}
-										value={formik.values.rollno}
-										className="field-divided"
-										required
-									/>
-								</li>
-
-						}
 						<li>
 							<label>Age <span className="required">*</span></label>
 							<input

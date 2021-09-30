@@ -10,7 +10,7 @@ import { GoogleLogin } from 'react-google-login';
 import './styles/index.css';
 import React, { useState } from 'react';
 import About from './pages/about';
-import { Game } from './pages/grid';
+import Game from './pages/grid';
 import bot_img from './assets/aryabota-icon.jpeg';
 import SignupForm from './pages/signUpForm';
 import IPSModal from './modals/IPSModal';
@@ -20,7 +20,7 @@ import { TOP_LEVEL_PATHS } from './constants/routeConstants';
 import { Provider, useDispatch } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './reducers';
-import { addEmail, addName, setSpace } from './reducers/actions';
+import { addEmail, addName, setSpace } from './reducers/user/userActions';
 import { BASE_URL, environment } from './constants/routeConstants';
 import { Button } from '@material-ui/core';
 
@@ -49,7 +49,7 @@ const Content = () => {
 	const dispatch = useDispatch();
 
 	const routeChangeSecret = () => {
-		dispatch(setSpace('IPS'));
+		dispatch(setSpace('IPS'))
 		showModal(true);
 	}
 

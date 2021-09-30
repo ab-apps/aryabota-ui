@@ -1,11 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles/levelMap.css';
 import { useDispatch, useSelector } from 'react-redux'
-import { setLevel, setLevels } from './reducers/actions';
-//GLOBAL CONTEXT / STATE
-import { MazeState } from './globalStates';
+import { setLevel, setLevels } from './reducers/user/userActions';
 import { convertToContinuousNumbering } from './utils';
 import { BASE_URL, environment } from './constants/routeConstants';
+import { setData } from './reducers/maze/mazeActions';
 
 /**
  * UI Configuration Toolbar Component
@@ -19,8 +18,6 @@ import { BASE_URL, environment } from './constants/routeConstants';
  */
 function LevelMap(props) {
     const dispatch = useDispatch();
-    const mazeContext = useContext(MazeState);
-    const setMazeData = mazeContext[1];
     const space = useSelector((state) => state.user.space);
     const [levelMap, setLevelMap] = useState(undefined)
 
@@ -57,8 +54,7 @@ function LevelMap(props) {
             .then(response => response.json())
             .then(response => {
                 dispatch(setLevel(level));
-                setMazeData(mazeData => ({
-                    ...mazeData,
+                dispatch(setData({
                     rows: response?.rows,
                     columns: response?.columns,
                     coinSweeper: convertToContinuousNumbering(response?.row, response?.column, response?.columns),
@@ -70,7 +66,7 @@ function LevelMap(props) {
                     home: response?.homes?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
                     statement: response?.statement,
                     problemSpec: response?.problem_spec
-                }))
+                }));
             });
     }
 

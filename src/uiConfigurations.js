@@ -15,7 +15,7 @@ import FormatSize from '@material-ui/icons/FormatSize';
 import CodeIcon from '@material-ui/icons/Code';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { clearData } from './reducers/actions';
+import { clearData } from './reducers/user/userActions';
 //MAZE STATE
 import { Constants } from './globalStates';
 //UTILS

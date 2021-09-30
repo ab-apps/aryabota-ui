@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Linkify from 'react-linkify';
 import '../styles/ErrorModal.css';
-import { MazeState } from '../globalStates';
 import Button from '@material-ui/core/Button';
+import { useDispatch } from 'react-redux';
+import { dismissModal } from '../reducers/maze/mazeActions';
 
 /**
  * UI Configuration Toolbar Component
@@ -15,19 +16,13 @@ import Button from '@material-ui/core/Button';
  * <UiConfigs />
  */
 function MessageModal(props) {
-    /* eslint no-unused-vars:"off" */
-    const [mazeData, setMazeData] = useContext(MazeState);
+    const dispatch = useDispatch();
 
-    const dismissModal = () => {
-        setMazeData(prev => ({
-            ...prev,
-            error_message: null,
-            message: null,
-            succeeded: null,
-        }))
+    const dismiss_modal = () => {
+        dispatch(dismissModal());
     }
     return (
-        <div className="modal" onClick={dismissModal}>
+        <div className="modal" onClick={dismiss_modal}>
             <div className="modal-content">
                 <Linkify>
                     <div>{props.error_message}</div>

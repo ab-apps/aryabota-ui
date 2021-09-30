@@ -1,7 +1,8 @@
 import {createStore, combineReducers} from 'redux';
 import { persistStore, persistReducer } from 'redux-persist'
 import localStorage from 'redux-persist/lib/storage'
-import userReducer from './user';
+import userReducer from './user/user';
+import mazeReducer from './maze/maze';
 
 const persistConfig = {
     key: 'root',
@@ -10,7 +11,8 @@ const persistConfig = {
   }
 
 const rootReducer = combineReducers({
-    user: persistReducer(persistConfig, userReducer)
+    user: persistReducer(persistConfig, userReducer),
+    maze: persistReducer(persistConfig, mazeReducer)
 });
 
 export const store = createStore(

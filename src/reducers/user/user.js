@@ -1,4 +1,4 @@
-import { USER_TYPES } from './actions';
+import { USER_TYPES } from './userActions';
 
 const initialState = {
     email: '',

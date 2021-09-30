@@ -12,7 +12,7 @@
  .grid-div {
   display: flex;
   flex-direction: column;
-  margin-top: 5px;
+  margin-top: 25px;
   min-width: 27%;
   width: 400px;
   max-width: 400px;
@@ -22,7 +22,7 @@
 .first-pane, .python-div {
   display: flex;
   flex-direction: column;
-  margin-top: 25px;
+  margin-top: 45px;
   min-width: 25%;
   width: 200px;
   max-width: 200px;
@@ -43,14 +43,17 @@
 }
 
 .output-title {
-  background-color: #006b76; /*rgb(139, 195, 74);*/
+  background-color: #006b76;
 }
 
 textarea, .editor {  
-font-family: Consolas, monaco, monospace; 
 font-size: 15px;   
 height: 200px;
 width: 116%;
+}
+
+.runButton:hover Button {
+  background-color: rgb(148, 148, 148);
 }
 
 .submit-area {

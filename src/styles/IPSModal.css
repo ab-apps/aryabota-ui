@@ -13,17 +13,13 @@
     color: black;
   }
   
-  /* Modal Content/Box */
-  .modal-content {
-    display: flex;
-    flex-direction: column;
-    background-color: #fefefe;
-    margin: 21% auto;
+.modal-content {
+    font-size: 80%;
+    margin: 17% auto;
     padding: 20px;
-    width: 31%;
-    height: 30%;
-    align-items: center;
+    width: 17%;
+    min-width: fit-content;
+    height: fit-content;
     row-gap: 5%;
-    justify-content: center;
     font-family: 'Circular-Loom', "Helvetica", "Arial", sans-serif;
   }

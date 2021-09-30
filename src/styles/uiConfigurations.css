@@ -47,6 +47,10 @@
   background-color: rgb(148, 148, 148);
 }
 
+.sizeValues {
+  color: black;
+}
+
 .penUp {
   background-color: white;
 }
@@ -65,8 +69,9 @@
   column-gap: 3%;
 }
 
-.pes-logo {
+.logo {
   position: fixed;
-  top:  1.5vh;
-  left: 2%;
+  height: 75px;
+  left: 0%;
+  cursor: pointer;
 }

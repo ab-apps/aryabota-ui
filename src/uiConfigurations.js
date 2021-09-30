@@ -8,6 +8,7 @@ import Select from 'react-select';
 import Button from '@material-ui/core/Button';
 //COLOUR PICKER
 import { GithubPicker } from 'react-color';
+import { useSelector } from 'react-redux';
 //MATERIAL UI ICONS FOR CONFIG BUTTONS
 import PaletteTwoTone from '@material-ui/icons/PaletteTwoTone';
 import FormatSize from '@material-ui/icons/FormatSize';
@@ -18,7 +19,7 @@ import { clearData } from './reducers/actions';
 //MAZE STATE
 import { Constants } from './globalStates';
 //UTILS
-import pes_logo_white_text from './assets/pes_logo_white_text.png';
+import aryabota_logo from './assets/aryabota-logo.png';
 
 /**
  * UI Configuration Toolbar Component
@@ -32,6 +33,7 @@ import pes_logo_white_text from './assets/pes_logo_white_text.png';
  */
 function UiConfigs(props) {
     const dispatch = useDispatch();
+    const space = useSelector((state) => state.user.space);
     /**
      * color sets the base color of the webpage
      * @var
@@ -178,6 +180,7 @@ function UiConfigs(props) {
                     <Select
                         id="sizeSelector"
                         placeholder={sizes}
+                        className='sizeValues'
                         options={sizeValues}
                         onChange={sizeChange}
                     />
@@ -237,6 +240,18 @@ function UiConfigs(props) {
         )
     }
 
+    const ABLogo = () => {
+        const history = useHistory();
+        const onClick = () => {
+            let path = 'home';
+            history.push(path);
+        }
+
+        return (
+            <img className="logo" alt="AryaBota Logo" src={aryabota_logo} height="45px" onClick={onClick} />
+        )
+    }
+
     const LogoutButton = () => {
         const history = useHistory();
 
@@ -248,14 +263,18 @@ function UiConfigs(props) {
 
         return (
             <div className="googleLogout">
-                <GoogleLogout
-                    render={renderProps => (
-                        <Button variant="contained" startIcon={<ExitToAppIcon />} onClick={renderProps.onClick} disabled={renderProps.disabled}>Logout</Button>
-                    )}
-                    clientId={Constants.clientId}
-                    buttonText="Logout"
-                    onLogoutSuccess={logout}
-                />
+                {space !== "IPS"
+                    ? <GoogleLogout
+                        render={renderProps => (
+                            <Button variant="contained" startIcon={<ExitToAppIcon />} onClick={renderProps.onClick} disabled={renderProps.disabled}>Logout</Button>
+                        )}
+                        clientId={Constants.clientId}
+                        buttonText="Logout"
+                        onLogoutSuccess={logout}
+                    />
+                    : <Button variant="contained" startIcon={<ExitToAppIcon />} onClick={logout}>Logout</Button>
+                }
+
             </div>
         )
     }
@@ -264,9 +283,10 @@ function UiConfigs(props) {
         <div>
             <style>
                 {
-                    'body { background-color: ' + color + '; color: ' + LightenDarkenColor(color, -85) + ';}'
+                    'body { background-color: ' + color + '; color: ' + LightenDarkenColor(color, -95) + ';}'
                     + '.toolbar { background-color: ' + LightenDarkenColor(color, -35) + ';}'
                     + '.output-title {background-color: ' + color + ';}'
+                    + '.levelMap {background-color: ' + LightenDarkenColor(color, -65) + ';}'
                     + (sizes === "Small" ? 'p { font-size: small;} h3 { font-size: large; } .status { font-size: 22px; } textarea { font-size: 13px;}' :
                         sizes === "Medium" ? 'p { font-size: medium;} h3 { font-size: larger; } .status { font-size: 25px; } textarea { font-size: 15px;}' :
                             sizes === "Large" ? 'p { font-size: larger;} h3 { font-size: x-large; } .status { font-size: 30px; } textarea { font-size: 17px;}' :
@@ -276,7 +296,7 @@ function UiConfigs(props) {
             </style>
             <div className="toolbar" id="toolbar-div">
                 <div className="configs">
-                    <img className="pes-logo" alt="PES University Logo" src={pes_logo_white_text} height="45px" />
+                    <ABLogo />
                     <ToggleSize />
                     <ToggleColor />
                     <TogglePane />

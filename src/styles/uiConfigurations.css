@@ -47,6 +47,10 @@
   background-color: rgb(148, 148, 148);
 }
 
+.sizeValues {
+  color: black;
+}
+
 .penUp {
   background-color: white;
 }

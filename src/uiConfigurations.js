@@ -178,6 +178,7 @@ function UiConfigs(props) {
                     <Select
                         id="sizeSelector"
                         placeholder={sizes}
+                        className='sizeValues'
                         options={sizeValues}
                         onChange={sizeChange}
                     />

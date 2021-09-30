@@ -33,7 +33,6 @@ export default function Controller() {
     const [mazeData, setMazeData] = useContext(MazeState);
     // const [pythonicCode, setPythonicCode] = useContext(PythonicCodeState);
 
-    const [penState, setPenState] = useState("penDown");
     const [editorFont, setEditorFont] = useState(14);
     const userEmail = useSelector((state) => state.user.email)
     const currentLevel = useSelector((state) => state.user.currentLevel);
@@ -128,20 +127,14 @@ export default function Controller() {
                 step.stateChanges?.forEach(change => {
                     const newPos = convertToContinuousNumbering(change.row, change.column, currState.columns);
                     const newDir = change.dir;
-                    // pen status from back-end (set via 'pen up' or 'pen down' commands)
-                    const penStatusOnMove = change.pen;
-                    if (penStatusOnMove === "up") setPenState("penUp")
-                    else if (penStatusOnMove === "down") setPenState("penDown")
-                    const newPositionsSeen = change.trail.map(trailObj => convertToContinuousNumbering(trailObj.row, trailObj.column, currState.columns));
+                    const newPositionsSeen = change.coloured?.map(trailObj => 
+                        convertToContinuousNumbering(trailObj.position.row, trailObj.position.column, currState.columns)
+                    );
                     currState = {
                         ...currState,
                         coinSweeper: newPos,
                         currentDirection: newDir,
-                        positionsSeen: currState.positionsSeen.concat(newPositionsSeen),
-                        penLoc: penState === "penDown"
-                            ? currState.penLoc.concat(newPositionsSeen.slice(currState.prevSteps, newPositionsSeen.length - 1))
-                            : currState.penLoc,
-                        prevSteps: newPositionsSeen.length
+                        positionsSeen: currState.positionsSeen.concat(newPositionsSeen)
                     };
                     stepObj.stateChanges.push(currState);
                 });
@@ -161,14 +154,41 @@ export default function Controller() {
         })
     }
 
-    function getSteps(code, currState) {
+    function getSteps(code) {
+        /**
+         * making request to get initial state of the grid and CoinSweeper robot 
+         */
+        fetch(`${BASE_URL[environment]}/api/problem?level=` + currentLevel, {
+            crossDomain: true,
+            method: 'GET',
+            headers: {
+            'Content-type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(response => {
+                setMazeData(mazeData => ({
+                    ...mazeData,
+                    rows: response?.rows,
+                    columns: response?.columns,
+                    coinSweeper: convertToContinuousNumbering(response?.row, response?.column, response?.columns),
+                    coinLoc: response?.coins?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
+                    obstacleLoc: response?.obstacles?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
+                    positionsSeen: [],
+                    currentDirection: response?.dir,
+                    levelType: response?.type,
+                    home: response?.homes?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
+                    statement: response?.statement,
+                    problemSpec: response?.problem_spec
+                }));
+            });
+
         fetch(`${BASE_URL[environment]}/api/problem?level=` + currentLevel, {
             crossDomain: true,
             method: 'POST',
             body: JSON.stringify({ commands: code, level: currentLevel.toString(), email: userEmail }),
             headers: {
-                'Content-type': 'application/json',
-                'Content-Security-Policy': 'upgrade-insecure-requests'
+                'Content-type': 'application/json'
             }
         })
             .then(response => response.json())
@@ -177,7 +197,7 @@ export default function Controller() {
                     ...prev,
                     outputValue: []
                 }));
-                parseResponse(response, currState)
+                parseResponse(response, mazeData)
             });
     }
 
@@ -197,41 +217,9 @@ export default function Controller() {
         return output;
     }
 
-    function resetGrid() {
-        fetch('https://aryabota.herokuapp.com/api/problem?level=' + currentLevel, {
-            crossDomain: true,
-            method: 'GET',
-            headers: {
-                'Content-type': 'application/json',
-                'Content-Security-Policy': 'upgrade-insecure-requests'
-            }
-        })
-            .then(response => response.json())
-            .then(response => {
-                setMazeData(mazeData => ({
-                    ...mazeData,
-                    rows: response?.rows,
-                    columns: response?.columns,
-                    coinSweeper: convertToContinuousNumbering(response?.row, response?.column, response?.columns),
-                    coinLoc: response?.coins?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
-                    obstacleLoc: response?.obstacles?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
-                    positionsSeen: response?.trail?.map(trailObj => convertToContinuousNumbering(trailObj?.row, trailObj?.column, response?.columns)),
-                    currentDirection: response?.dir,
-                    levelType: response?.type,
-                    home: response?.homes?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
-                    statement: response?.statement,
-                    problemSpec: response?.problem_spec,
-                    //TODO: Might want to set these two values from backend
-                    penLoc: [1],
-                    prevSteps: 1
-                }))
-            });
-    }
-
     const submitCode = function (e) {
         e.preventDefault();
-        getSteps(editorValue, mazeData);
-        resetGrid();
+        getSteps(editorValue);
     }
 
     let [editorValue, setEditorValue] = useState('');
@@ -243,8 +231,6 @@ export default function Controller() {
         <>
             <LevelMap />
             <UiConfigs
-                penLoc={mazeData.penLoc}
-                onPenChange={setPenState}
                 onSizeChange={setEditorFont}
             />
 
@@ -307,8 +293,6 @@ export default function Controller() {
                     coinSweeper={mazeData.coinSweeper}
                     currentDirection={mazeData.currentDirection}
                     positionsSeen={mazeData.positionsSeen}
-                    penLoc={mazeData.penLoc}
-                    prevSteps={mazeData.prevSteps}
                     home={mazeData.home}
                 />
                 <br />

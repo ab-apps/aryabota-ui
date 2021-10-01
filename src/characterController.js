@@ -73,6 +73,29 @@ const Controller = () => {
             }
         } else {
             clearInterval(control.changeInterval)
+            fetch(`${BASE_URL[environment]}/api/problem?level=` + currentLevel, {
+                crossDomain: true,
+                method: 'GET',
+                headers: {
+                'Content-type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(response => {
+                    dispatch(setData({
+                        rows: response?.rows,
+                        columns: response?.columns,
+                        coinSweeper: convertToContinuousNumbering(response?.row, response?.column, response?.columns),
+                        coinLoc: response?.coins?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
+                        obstacleLoc: response?.obstacles?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
+                        positionsSeen: response?.coloured?.map(trailObj => convertToContinuousNumbering(trailObj.position.row, trailObj.position.column, response?.columns)),
+                        currentDirection: response?.dir,
+                        levelType: response?.type,
+                        home: response?.homes?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
+                        statement: response?.statement,
+                        problemSpec: response?.problem_spec
+                      }));
+                });    
             setControl(prev => ({
                 ...prev,
                 changeInterval: null

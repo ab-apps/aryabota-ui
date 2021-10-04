@@ -2,18 +2,21 @@ import React from 'react';
 import '../styles/signUpForm.css';
 import { TOP_LEVEL_PATHS } from '../constants/routeConstants';
 import { useHistory } from 'react-router';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { Constants } from '../globalStates';
 import { BASE_URL, environment } from '../constants/routeConstants';
+import { clearData } from '../reducers/user/userActions';
 
 const SignupForm = () => {
 	// Pass the useFormik() hook initial form values and a submit function that will
 	// be called when the form is submitted
 	const history = useHistory();
-	const userEmail = useSelector((state) => state.user.email)
-	const userName = useSelector((state) => state.user.fullName)
-	const space = useSelector((state) => state.user.space)
+	const dispatch = useDispatch();
+	dispatch(clearData());
+	const userEmail = useSelector((state) => state.user.email);
+	const userName = useSelector((state) => state.user.fullName);
+	const space = useSelector((state) => state.user.space);
 
 	const registerUser = values => {
 		fetch(`${BASE_URL[environment]}/api/user`, {

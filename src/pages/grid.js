@@ -27,6 +27,7 @@ import { BASE_URL, environment } from '../constants/routeConstants';
    */
   const dispatch = useDispatch();
   const mazeData = useSelector(state => state.maze);
+  const currentLevel = useSelector(state => state.user.currentLevel);
 
   /**
    * Game's useEffect:
@@ -37,7 +38,7 @@ import { BASE_URL, environment } from '../constants/routeConstants';
     /**
      * making request to get initial state of the grid and CoinSweeper robot 
      */
-    fetch(`${BASE_URL[environment]}/api/problem?level=0.1`, {
+    fetch(`${BASE_URL[environment]}/api/problem?level=${currentLevel}`, {
       crossDomain: true,
       method: 'GET',
       headers: {
@@ -60,6 +61,7 @@ import { BASE_URL, environment } from '../constants/routeConstants';
           problemSpec: response?.problem_spec
         }));
       });
+      /* eslint-disable-next-line react-hooks/exhaustive-deps */
   }, [dispatch]);
 
   //check if player location is generated

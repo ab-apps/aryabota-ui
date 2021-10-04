@@ -4,22 +4,25 @@ const initialState = {
     rows: '',
     columns: '',
     coins: [],
-    coins_per_position: [],
     dir: 'down',
-    homes: [],
+    home: [],
     obstacles: [],
-    obstacles_per_position: [],
     pen: 'down',
     row: '',
     column: '',
     statement: '',
-    trail: [],
-    type: '',
-    error_message: ''
+    levelType: '',
+    error_message: '',
+    obstacleLoc: [],
+    coinLoc: [],
+    problemSpec: '',
+    currentDirection: '',
+    positionsSeen: [],
+    coinSweeper: []
 }
 
 const mazeReducer = (state = initialState, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case MAZE_TYPES.SET_DATA: return {
             ...state,
             ...action.payload
@@ -57,6 +60,7 @@ const mazeReducer = (state = initialState, action) => {
             message: '',
             succeeded: '',
         }
+        case MAZE_TYPES.UNSET_DATA: return initialState;
         default: return state;
     }
 }

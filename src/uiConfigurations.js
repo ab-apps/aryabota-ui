@@ -16,6 +16,7 @@ import CodeIcon from '@material-ui/icons/Code';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { clearData } from './reducers/user/userActions';
+import { unsetData } from './reducers/maze/mazeActions';
 //MAZE STATE
 import { Constants } from './globalStates';
 //UTILS
@@ -257,13 +258,14 @@ function UiConfigs(props) {
 
         const logout = (_response) => {
             dispatch(clearData());
+            dispatch(unsetData());
             let path = '/';
             history.push(path);
         }
 
         return (
             <div className="googleLogout">
-                {space !== "IPS"
+                {space === "PES"
                     ? <GoogleLogout
                         render={renderProps => (
                             <Button variant="contained" startIcon={<ExitToAppIcon />} onClick={renderProps.onClick} disabled={renderProps.disabled}>Logout</Button>

@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import { GoogleLogin } from 'react-google-login';
 import './styles/index.css';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import About from './pages/about';
 import Game from './pages/grid';
 import bot_img from './assets/aryabota-icon.jpeg';
@@ -17,7 +17,7 @@ import IPSModal from './modals/IPSModal';
 // Constants
 import { Constants } from './globalStates';
 import { TOP_LEVEL_PATHS } from './constants/routeConstants';
-import { Provider, useDispatch, useSelector } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './reducers';
 import { addEmail, addName, setSpace } from './reducers/user/userActions';
@@ -30,17 +30,19 @@ const failed = (response) => {
 
 const Content = () => {
 	const [modal, showModal] = useState(false);
-	const space = useSelector((state) => state.user.space)
+	const space = useRef('');
 
 	const IpsFormValidator = (password, roll_number) => {
 		if (password === "ips1234") {
 			dispatch(addEmail(roll_number));
 			dispatch(setSpace('IPS'));
+			space.current = 'IPS';
 			routeChange(roll_number);
 		}
 		else if (password === "stressbots:)7") {
 			dispatch(addEmail(roll_number));
 			dispatch(setSpace('Test'));
+			space.current = 'Test';
 			routeChange(roll_number);
 		}
 		else {
@@ -61,6 +63,7 @@ const Content = () => {
 
 	const routeChangePES = (response) => {
 		dispatch(setSpace('PES'));
+		space.current = 'PES';
 		dispatch(addEmail(response.profileObj.email));
 		dispatch(addName(response.profileObj.givenName, response.profileObj.familyName));
 
@@ -68,7 +71,7 @@ const Content = () => {
 	}
 
 	const routeChange = (response) => {
-		fetch(`${BASE_URL[environment]}/api/user?email=${response}&space=${space}`, {
+		fetch(`${BASE_URL[environment]}/api/user?email=${response}&space=${space.current}`, {
 			crossDomain: true,
 			method: 'GET',
 			headers: {

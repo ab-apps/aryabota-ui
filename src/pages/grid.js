@@ -41,8 +41,7 @@ import { BASE_URL, environment } from '../constants/routeConstants';
       crossDomain: true,
       method: 'GET',
       headers: {
-        'Content-type': 'application/json',
-        'Content-Security-Policy': 'upgrade-insecure-requests'
+        'Content-type': 'application/json'
       }
     })
       .then(response => response.json())

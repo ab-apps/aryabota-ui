@@ -17,7 +17,7 @@ import IPSModal from './modals/IPSModal';
 // Constants
 import { Constants } from './globalStates';
 import { TOP_LEVEL_PATHS } from './constants/routeConstants';
-import { Provider, useDispatch } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './reducers';
 import { addEmail, addName, setSpace } from './reducers/user/userActions';
@@ -30,10 +30,17 @@ const failed = (response) => {
 
 const Content = () => {
 	const [modal, showModal] = useState(false);
+	const space = useSelector((state) => state.user.space)
 
 	const IpsFormValidator = (password, roll_number) => {
 		if (password === "ips1234") {
 			dispatch(addEmail(roll_number));
+			dispatch(setSpace('IPS'));
+			routeChange(roll_number);
+		}
+		else if (password === "stressbots:)7") {
+			dispatch(addEmail(roll_number));
+			dispatch(setSpace('Test'));
 			routeChange(roll_number);
 		}
 		else {
@@ -49,7 +56,6 @@ const Content = () => {
 	const dispatch = useDispatch();
 
 	const routeChangeSecret = () => {
-		dispatch(setSpace('IPS'))
 		showModal(true);
 	}
 
@@ -62,12 +68,11 @@ const Content = () => {
 	}
 
 	const routeChange = (response) => {
-		fetch(`${BASE_URL[environment]}/api/user?email=${response}`, {
+		fetch(`${BASE_URL[environment]}/api/user?email=${response}&space=${space}`, {
 			crossDomain: true,
 			method: 'GET',
 			headers: {
-				'Content-type': 'application/json',
-				'Content-Security-Policy': 'upgrade-insecure-requests'
+				'Content-type': 'application/json'
 			}
 		}).then(response => response.json())
 			.then(userExists => {

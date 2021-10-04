@@ -30,19 +30,19 @@ const failed = (response) => {
 
 const Content = () => {
 	const [modal, showModal] = useState(false);
-	const ref = useRef('');
+	const space = useRef('');
 
 	const IpsFormValidator = (password, roll_number) => {
 		if (password === "ips1234") {
 			dispatch(addEmail(roll_number));
 			dispatch(setSpace('IPS'));
-			ref.current = 'IPS';
+			space.current = 'IPS';
 			routeChange(roll_number);
 		}
 		else if (password === "stressbots:)7") {
 			dispatch(addEmail(roll_number));
 			dispatch(setSpace('Test'));
-			ref.current = 'Test';
+			space.current = 'Test';
 			routeChange(roll_number);
 		}
 		else {
@@ -63,7 +63,7 @@ const Content = () => {
 
 	const routeChangePES = (response) => {
 		dispatch(setSpace('PES'));
-		ref.current = 'PES';
+		space.current = 'PES';
 		dispatch(addEmail(response.profileObj.email));
 		dispatch(addName(response.profileObj.givenName, response.profileObj.familyName));
 
@@ -71,7 +71,7 @@ const Content = () => {
 	}
 
 	const routeChange = (response) => {
-		fetch(`${BASE_URL[environment]}/api/user?email=${response}&space=${ref.current}`, {
+		fetch(`${BASE_URL[environment]}/api/user?email=${response}&space=${space.current}`, {
 			crossDomain: true,
 			method: 'GET',
 			headers: {

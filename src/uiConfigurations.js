@@ -265,7 +265,7 @@ function UiConfigs(props) {
 
         return (
             <div className="googleLogout">
-                {space !== "IPS"
+                {space === "PES"
                     ? <GoogleLogout
                         render={renderProps => (
                             <Button variant="contained" startIcon={<ExitToAppIcon />} onClick={renderProps.onClick} disabled={renderProps.disabled}>Logout</Button>

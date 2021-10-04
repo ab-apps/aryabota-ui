@@ -1,6 +1,6 @@
 .toolbar {
   /* display: none; */
-  height: max-content;
+  height: 30px;
   width: 100%;
   position: fixed;
   top: 0;
@@ -71,7 +71,7 @@
 
 .logo {
   position: fixed;
-  height: 75px;
-  left: 0%;
+  height: 60px;
+  left: 8px;
   cursor: pointer;
 }

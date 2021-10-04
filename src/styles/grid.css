@@ -8,6 +8,7 @@ body {
   color: whitesmoke;
   letter-spacing: 0.6px;
   word-spacing: 1.5px;
+  margin: 0;
 }
 
 ol, ul {
@@ -38,7 +39,7 @@ h3 {
   margin-top: 45px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   /* border-color: #000000;
   border-top: solid black 1.8px;
   border-bottom: solid black 1.8px; */

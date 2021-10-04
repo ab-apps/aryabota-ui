@@ -1,11 +1,11 @@
 .levelMap {
-    /* height: 120%; */
-    width: 6.65%;
+    height: calc(100vh - 90px);
+    width: 80px;
     min-width: 70px;
     position: relative;
     z-index: 5;
     top: 25px;
-    left: -25px;
+    /* left: -25px; */
     background-color: #0c3336;
     color: whitesmoke;
     transition:  .5s ease;

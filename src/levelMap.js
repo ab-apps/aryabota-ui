@@ -33,7 +33,6 @@ function LevelMap(props) {
                 .then(response => response.json())
                 .then(response => {
                     dispatch(setLevels(response));
-                    dispatch(setLevel(response[0]));
                     setLevelMap(response.map(level => {
                         return <div className="levelList" onClick={(e) => getLevel(e)}>{level}</div>
                     }))

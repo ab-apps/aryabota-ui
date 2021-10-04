@@ -6,8 +6,7 @@ import mazeReducer from './maze/maze';
 
 const persistConfig = {
   key: 'root',
-  storage: localStorage,
-  blacklist: ['currentLevel']
+  storage: localStorage
 }
 
 const rootReducer = persistCombineReducers(persistConfig, {

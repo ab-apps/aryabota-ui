@@ -61,6 +61,7 @@ import { BASE_URL, environment } from '../constants/routeConstants';
           problemSpec: response?.problem_spec
         }));
       });
+      /* eslint-disable-next-line react-hooks/exhaustive-deps */
   }, [dispatch]);
 
   //check if player location is generated

@@ -34,6 +34,7 @@ const Controller = () => {
      const mazeData = useSelector(state => state.maze);
     const [editorFont, setEditorFont] = useState(14);
     const userEmail = useSelector((state) => state.user.email)
+    const space = useSelector((state) => state.user.space)
     const currentLevel = useSelector((state) => state.user.currentLevel);
 
     /**
@@ -196,7 +197,7 @@ const Controller = () => {
         fetch(`${BASE_URL[environment]}/api/problem?level=` + currentLevel, {
             crossDomain: true,
             method: 'POST',
-            body: JSON.stringify({ commands: code, level: currentLevel.toString(), email: userEmail }),
+            body: JSON.stringify({ commands: code, level: currentLevel.toString(), email: userEmail, space: space}),
             headers: {
                 'Content-type': 'application/json'
             }

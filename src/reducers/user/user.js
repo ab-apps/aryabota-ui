@@ -3,7 +3,8 @@ import { USER_TYPES } from './userActions';
 const initialState = {
     email: '',
     fullName: '',
-    currentLevel: 0.1
+    currentLevel: 0.1,
+    space: ''
 };
 
 const userReducer = (state = initialState, action ) => {

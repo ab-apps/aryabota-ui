@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import { GoogleLogin } from 'react-google-login';
 import './styles/index.css';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import About from './pages/about';
 import Game from './pages/grid';
 import bot_img from './assets/aryabota-icon.jpeg';
@@ -22,6 +22,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './reducers';
 import { addEmail, addName, setSpace } from './reducers/user/userActions';
 import { BASE_URL, environment } from './constants/routeConstants';
+import { clearData } from './reducers/user/userActions';
 import { Button } from '@material-ui/core';
 
 const failed = (response) => {
@@ -29,6 +30,11 @@ const failed = (response) => {
 }
 
 const Content = () => {
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(clearData());
+	/* eslint-disable-next-line react-hooks/exhaustive-deps */
+    }, []);
 	const [modal, showModal] = useState(false);
 	const space = useRef('');
 
@@ -55,7 +61,6 @@ const Content = () => {
 	messageModal = <IPSModal id='IPS_Modal' className="IPS_Modal" onClick={IpsFormValidator} />;
 
 	const history = useHistory();
-	const dispatch = useDispatch();
 
 	const routeChangeSecret = () => {
 		showModal(true);

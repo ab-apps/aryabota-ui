@@ -13,6 +13,7 @@ import About from './pages/about';
 import Game from './pages/grid';
 import bot_img from './assets/aryabota-icon.jpeg';
 import SignupForm from './pages/signUpForm';
+import Footer from './footer';
 import IPSModal from './modals/IPSModal';
 // Constants
 import { Constants } from './globalStates';
@@ -143,6 +144,7 @@ ReactDOM.render(
 					</Route>
 				</Switch>
 			</Router>
+			<Footer />
 		</PersistGate>
 	</Provider>
 	, document.getElementById('root')

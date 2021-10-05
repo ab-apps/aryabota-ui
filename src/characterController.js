@@ -27,11 +27,11 @@ import { useDispatch } from 'react-redux';
  */
 const Controller = () => {
     /**
-     * Global context / state to manipulate character location, etc.
-     * @const
-     */
-     const dispatch = useDispatch();
-     const mazeData = useSelector(state => state.maze);
+    * Global context / state to manipulate character location, etc.
+    * @const
+    */
+    const dispatch = useDispatch();
+    const mazeData = useSelector(state => state.maze);
     const [editorFont, setEditorFont] = useState(14);
     const userEmail = useSelector((state) => state.user.email)
     const space = useSelector((state) => state.user.space)
@@ -42,6 +42,7 @@ const Controller = () => {
      * @const
      */
     const [control, setControl] = useState({
+        botStatus: "inactive",
         changeInterval: null,
         pythonicCode: null,
         outputValue: [],
@@ -50,6 +51,7 @@ const Controller = () => {
 
     useEffect(() => {
         if (control.steps.length && control.changeInterval == null) {
+            control.botStatus = "active"
             control.changeInterval = setInterval(doChange, 600)
         }
     });
@@ -73,32 +75,10 @@ const Controller = () => {
                 control.steps.shift()
             }
         } else {
-            clearInterval(control.changeInterval)
-            fetch(`${BASE_URL[environment]}/api/problem?level=` + currentLevel, {
-                crossDomain: true,
-                method: 'GET',
-                headers: {
-                'Content-type': 'application/json'
-                }
-            })
-                .then(response => response.json())
-                .then(response => {
-                    dispatch(setData({
-                        rows: response?.rows,
-                        columns: response?.columns,
-                        coinSweeper: convertToContinuousNumbering(response?.row, response?.column, response?.columns),
-                        coinLoc: response?.coins?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
-                        obstacleLoc: response?.obstacles?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
-                        positionsSeen: response?.coloured?.map(trailObj => convertToContinuousNumbering(trailObj.position.row, trailObj.position.column, response?.columns)),
-                        currentDirection: response?.dir,
-                        levelType: response?.type,
-                        home: response?.homes?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
-                        statement: response?.statement,
-                        problemSpec: response?.problem_spec
-                      }));
-                });    
+            clearInterval(control.changeInterval)   
             setControl(prev => ({
                 ...prev,
+                botStatus: "paused",
                 changeInterval: null
             }))
         }
@@ -230,12 +210,55 @@ const Controller = () => {
 
     const submitCode = function (e) {
         e.preventDefault();
-        getSteps(editorValue);
+        if (control.botStatus === "inactive")
+        {
+            getSteps(editorValue);
+        }
+        else if (control.botStatus === "active") {
+            // clearInterval(control.changeInterval)
+            // setControl(prev => ({
+            //     ...prev,
+            //     changeInterval: setInterval(doChange, 0)
+            // }))
+        }
+        else if (control.botStatus === "paused") {
+            fetch(`${BASE_URL[environment]}/api/problem?level=` + currentLevel, {
+                crossDomain: true,
+                method: 'GET',
+                headers: {
+                'Content-type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(response => {
+                    control.botStatus = "inactive"
+                    dispatch(setData({
+                        rows: response?.rows,
+                        columns: response?.columns,
+                        coinSweeper: convertToContinuousNumbering(response?.row, response?.column, response?.columns),
+                        coinLoc: response?.coins?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
+                        obstacleLoc: response?.obstacles?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
+                        positionsSeen: response?.coloured?.map(trailObj => convertToContinuousNumbering(trailObj.position.row, trailObj.position.column, response?.columns)),
+                        currentDirection: response?.dir,
+                        levelType: response?.type,
+                        home: response?.homes?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
+                        statement: response?.statement,
+                        problemSpec: response?.problem_spec
+                      }));
+                });
+        }      
     }
 
     let [editorValue, setEditorValue] = useState('');
     function onChange(newValue) {
         setEditorValue(newValue);
+    }
+
+    function getButtonText() {
+        if (control.botStatus === "inactive" || control.botStatus === "active")
+            return "Run";
+        else if (control.botStatus === "paused")
+            return "Reset";
     }
 
     return (
@@ -288,7 +311,7 @@ const Controller = () => {
                                 
                                 endIcon={<PlayArrowRounded />}
                             >
-                                Run
+                                {getButtonText()}
                             </Button>
                         </div>
                     </form>

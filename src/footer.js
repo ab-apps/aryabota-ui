@@ -28,7 +28,7 @@ function Footer() {
 
                 </div>
                 <div className="collab-container">
-                    In Collaboration With <img src={PESLogo} height='25px' alt="PES Logo"></img>
+                    In collaboration with PESU <img src={PESLogo} height='25px' alt="PES Logo"></img>
                 </div>
             </div>
 

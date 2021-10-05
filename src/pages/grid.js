@@ -90,15 +90,9 @@ import { BASE_URL, environment } from '../constants/routeConstants';
   return (
     <>
       {maze}
+      <div className="mobile-disclaimer">Please view this on a laptop or PC</div>
     </>
   );
 }
 
 export default Game;
-// ReactDOM.render(
-//   <>
-//     <div className="mobile-disclaimer">eee</div>
-//     <Game />
-//   </>,
-//   document.getElementById('root')
-// );

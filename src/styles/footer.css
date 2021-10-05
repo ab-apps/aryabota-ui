@@ -5,7 +5,6 @@
     align-items: center;
     left: 0;
     bottom: 0;
-    margin-top: 50px;
     width: 100%;
     color: white;
     text-align: center;
@@ -27,7 +26,7 @@
     flex-direction: row;
     padding-left: 10%;
     column-gap: 2%;
-    width: 25%;
+    width: 30%;
 }
 
 .icons {
@@ -39,4 +38,19 @@
 
 .icons:hover {
     border-bottom: solid 1.5px white;
+}
+
+@media only screen and (max-width: 900px) {
+    .footer {
+        flex-direction: column;
+    }
+
+    .icons-container {
+        width: 100%;
+    }
+
+    .collab-container {
+        width: 100%;
+        padding-left: 0;
+    }
 }

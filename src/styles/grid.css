@@ -122,9 +122,9 @@ h3 {
   align-items: center;
 }
 
-/* .mobile-disclaimer {
+.mobile-disclaimer {
   display: none;
-} */
+}
 
 @media only screen and (max-width: 900px) {
   .game {
@@ -138,5 +138,9 @@ h3 {
 
   .mobile-disclaimer {
     display: block;
+    font-size: 30px;
+    text-align: center;
+    padding: 50px;
+    /* width: 70%; */
   }
 }

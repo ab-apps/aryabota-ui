@@ -287,6 +287,7 @@ function UiConfigs(props) {
                 {
                     'body { background-color: ' + color + '; color: ' + LightenDarkenColor(color, -95) + ';}'
                     + '.toolbar { background-color: ' + LightenDarkenColor(color, -35) + ';}'
+                    + '.footer { background-color: ' + LightenDarkenColor(color, -35) + '; color: ' + LightenDarkenColor(color, -145) + ';}'
                     + '.output-title {background-color: ' + color + ';}'
                     + '.levelMap {background-color: ' + LightenDarkenColor(color, -65) + ';}'
                     + (sizes === "Small" ? 'p { font-size: small;} h3 { font-size: large; } .status { font-size: 22px; } textarea { font-size: 13px;}' :

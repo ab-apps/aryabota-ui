@@ -33,16 +33,10 @@ h3 {
 }
 
 .game {
-  /* padding: 5%; */
-  /* padding-left: 3%; */
   margin-top: 45px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  /* border-color: #000000;
-  border-top: solid black 1.8px;
-  border-bottom: solid black 1.8px; */
-  /* border-style: solid; */
 }
 
 .maze-row:after {
@@ -128,9 +122,9 @@ h3 {
   align-items: center;
 }
 
-/* .mobile-disclaimer {
+.mobile-disclaimer {
   display: none;
-} */
+}
 
 @media only screen and (max-width: 900px) {
   .game {
@@ -144,5 +138,9 @@ h3 {
 
   .mobile-disclaimer {
     display: block;
+    font-size: 30px;
+    text-align: center;
+    padding: 50px;
+    /* width: 70%; */
   }
 }

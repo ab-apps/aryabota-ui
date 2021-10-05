@@ -44,6 +44,7 @@ const Controller = () => {
     const [control, setControl] = useState({
         botStatus: "inactive",
         changeInterval: null,
+        forwardChangeInterval: null,
         pythonicCode: null,
         outputValue: [],
         steps: []
@@ -75,11 +76,13 @@ const Controller = () => {
                 control.steps.shift()
             }
         } else {
-            clearInterval(control.changeInterval)   
+            clearInterval(control.changeInterval)  
+            clearInterval(control.forwardChangeInterval)
             setControl(prev => ({
                 ...prev,
                 botStatus: "paused",
-                changeInterval: null
+                changeInterval: null,
+                forwardChangeInterval: null
             }))
         }
 
@@ -210,16 +213,12 @@ const Controller = () => {
 
     const submitCode = function (e) {
         e.preventDefault();
-        if (control.botStatus === "inactive")
-        {
+        if (control.botStatus === "inactive") {
             getSteps(editorValue);
         }
         else if (control.botStatus === "active") {
-            // clearInterval(control.changeInterval)
-            // setControl(prev => ({
-            //     ...prev,
-            //     changeInterval: setInterval(doChange, 0)
-            // }))
+            clearInterval(control.changeInterval);
+            control.forwardChangeInterval = setInterval(doChange, 0);
         }
         else if (control.botStatus === "paused") {
             fetch(`${BASE_URL[environment]}/api/problem?level=` + currentLevel, {
@@ -255,8 +254,10 @@ const Controller = () => {
     }
 
     function getButtonText() {
-        if (control.botStatus === "inactive" || control.botStatus === "active")
+        if (control.botStatus === "inactive")
             return "Run";
+        else if (control.botStatus === "active")
+            return "Forward";
         else if (control.botStatus === "paused")
             return "Reset";
     }

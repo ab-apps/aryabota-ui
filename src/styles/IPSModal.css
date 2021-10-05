@@ -15,11 +15,14 @@
   
 .modal-content {
     font-size: 80%;
+    display: flex;
+    justify-content:center;
     margin: 17% auto;
     padding: 20px;
     width: 17%;
     min-width: fit-content;
     height: fit-content;
     row-gap: 5%;
+    background-color: #fefefe;
     font-family: 'Circular-Loom', "Helvetica", "Arial", sans-serif;
   }

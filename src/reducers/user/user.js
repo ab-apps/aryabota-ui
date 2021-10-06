@@ -4,7 +4,8 @@ const initialState = {
     email: '',
     fullName: '',
     currentLevel: 0.1,
-    space: ''
+    space: '',
+    botStatus: 'inactive'
 };
 
 const userReducer = (state = initialState, action ) => {
@@ -28,14 +29,18 @@ const userReducer = (state = initialState, action ) => {
         case USER_TYPES.SET_SPACE: return {
             ...state,
             space: action.payload.space
-        }
+        };
+        case USER_TYPES.SET_BOT_STATUS: return {
+            ...state,
+            botStatus: action.payload.botStatus
+        };
         case USER_TYPES.UNSET_ALL: return {
             ...state,
             space: '',
             email: '',
             fullName: '',
             currentLevel: 0.1
-        }
+        };
         default: return state;
     }
 }

@@ -13,6 +13,7 @@ import LevelMap from './levelMap';
 import { BASE_URL, environment } from './constants/routeConstants';
 import { setData, setError, setState, successMessage } from './reducers/maze/mazeActions';
 import { useDispatch } from 'react-redux';
+import { setBotStatus } from './reducers/user/userActions';
 
 /**
  * Component for controlling character/player
@@ -36,13 +37,13 @@ const Controller = () => {
     const userEmail = useSelector((state) => state.user.email)
     const space = useSelector((state) => state.user.space)
     const currentLevel = useSelector((state) => state.user.currentLevel);
+    const botStatus = useSelector((state) => state.user.botStatus);
 
     /**
      * local state to store interval id / game loop id
      * @const
      */
     const [control, setControl] = useState({
-        botStatus: "inactive",
         changeInterval: null,
         forwardChangeInterval: null,
         pythonicCode: null,
@@ -52,8 +53,8 @@ const Controller = () => {
 
     useEffect(() => {
         if (control.steps.length && control.changeInterval == null) {
-            control.botStatus = "active"
-            control.changeInterval = setInterval(doChange, 600)
+            dispatch(setBotStatus("active"));
+            control.changeInterval = setInterval(doChange, 600);
         }
     });
 
@@ -78,9 +79,9 @@ const Controller = () => {
         } else {
             clearInterval(control.changeInterval)  
             clearInterval(control.forwardChangeInterval)
+            dispatch(setBotStatus("paused"))
             setControl(prev => ({
                 ...prev,
-                botStatus: "paused",
                 changeInterval: null,
                 forwardChangeInterval: null
             }))
@@ -151,7 +152,7 @@ const Controller = () => {
 
     function getSteps(code) {
         /**
-         * making request to get initial state of the grid and CoinSweeper robot 
+         * making request to get initial state of the grid and robot 
          */
         fetch(`${BASE_URL[environment]}/api/problem?level=` + currentLevel, {
             crossDomain: true,
@@ -176,6 +177,8 @@ const Controller = () => {
                     problemSpec: response?.problem_spec
                   }));
             });
+
+        dispatch(setBotStatus("active"))
 
         fetch(`${BASE_URL[environment]}/api/problem?level=` + currentLevel, {
             crossDomain: true,
@@ -213,14 +216,14 @@ const Controller = () => {
 
     const submitCode = function (e) {
         e.preventDefault();
-        if (control.botStatus === "inactive") {
+        if (botStatus === "inactive") {
             getSteps(editorValue);
         }
-        else if (control.botStatus === "active") {
+        else if (botStatus === "active") {
             clearInterval(control.changeInterval);
             control.forwardChangeInterval = setInterval(doChange, 0);
         }
-        else if (control.botStatus === "paused") {
+        else if (botStatus === "paused") {
             fetch(`${BASE_URL[environment]}/api/problem?level=` + currentLevel, {
                 crossDomain: true,
                 method: 'GET',
@@ -230,7 +233,7 @@ const Controller = () => {
             })
                 .then(response => response.json())
                 .then(response => {
-                    control.botStatus = "inactive"
+                    dispatch(setBotStatus("inactive"))
                     dispatch(setData({
                         rows: response?.rows,
                         columns: response?.columns,
@@ -254,11 +257,11 @@ const Controller = () => {
     }
 
     function getButtonText() {
-        if (control.botStatus === "inactive")
+        if (botStatus === "inactive")
             return "Run";
-        else if (control.botStatus === "active")
+        else if (botStatus === "active")
             return "Forward";
-        else if (control.botStatus === "paused")
+        else if (botStatus === "paused")
             return "Reset";
     }
 

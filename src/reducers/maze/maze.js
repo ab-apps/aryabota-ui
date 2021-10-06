@@ -48,18 +48,18 @@ const mazeReducer = (state = initialState, action) => {
             ...state,
             ...action.payload.change,
             error_message: ''
-        }
+        };
         case MAZE_TYPES.SUCCESS_MSG: return {
             ...state,
             succeeded: action.payload.succeeded,
             message: action.payload.message
-        }
+        };
         case MAZE_TYPES.DISMISS_MODAL: return {
             ...state,
             error_message: '',
             message: '',
             succeeded: '',
-        }
+        };
         case MAZE_TYPES.UNSET_DATA: return initialState;
         default: return state;
     }

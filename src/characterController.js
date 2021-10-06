@@ -177,9 +177,6 @@ const Controller = () => {
                     problemSpec: response?.problem_spec
                   }));
             });
-
-        dispatch(setBotStatus("active"))
-
         fetch(`${BASE_URL[environment]}/api/problem?level=` + currentLevel, {
             crossDomain: true,
             method: 'POST',

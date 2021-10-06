@@ -8,6 +8,7 @@ body {
   color: whitesmoke;
   letter-spacing: 0.6px;
   word-spacing: 1.5px;
+  margin: 0;
 }
 
 ol, ul {

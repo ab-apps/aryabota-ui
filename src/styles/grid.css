@@ -37,7 +37,7 @@ h3 {
   margin-top: 45px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .maze-row:after {

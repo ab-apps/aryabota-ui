@@ -8,11 +8,12 @@ import {
 } from "react-router-dom";
 import { GoogleLogin } from 'react-google-login';
 import './styles/index.css';
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import About from './pages/about';
 import Game from './pages/grid';
 import bot_img from './assets/aryabota-icon.jpeg';
 import SignupForm from './pages/signUpForm';
+import Footer from './footer';
 import IPSModal from './modals/IPSModal';
 // Constants
 import { Constants } from './globalStates';
@@ -22,6 +23,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './reducers';
 import { addEmail, addName, setSpace } from './reducers/user/userActions';
 import { BASE_URL, environment } from './constants/routeConstants';
+import { clearData } from './reducers/user/userActions';
 import { Button } from '@material-ui/core';
 
 const failed = (response) => {
@@ -29,11 +31,25 @@ const failed = (response) => {
 }
 
 const Content = () => {
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(clearData());
+	/* eslint-disable-next-line react-hooks/exhaustive-deps */
+    }, []);
 	const [modal, showModal] = useState(false);
+	const space = useRef('');
 
 	const IpsFormValidator = (password, roll_number) => {
 		if (password === "ips1234") {
 			dispatch(addEmail(roll_number));
+			dispatch(setSpace('IPS'));
+			space.current = 'IPS';
+			routeChange(roll_number);
+		}
+		else if (password === "stressbots:)7") {
+			dispatch(addEmail(roll_number));
+			dispatch(setSpace('Test'));
+			space.current = 'Test';
 			routeChange(roll_number);
 		}
 		else {
@@ -46,15 +62,14 @@ const Content = () => {
 	messageModal = <IPSModal id='IPS_Modal' className="IPS_Modal" onClick={IpsFormValidator} />;
 
 	const history = useHistory();
-	const dispatch = useDispatch();
 
 	const routeChangeSecret = () => {
-		dispatch(setSpace('IPS'))
 		showModal(true);
 	}
 
 	const routeChangePES = (response) => {
 		dispatch(setSpace('PES'));
+		space.current = 'PES';
 		dispatch(addEmail(response.profileObj.email));
 		dispatch(addName(response.profileObj.givenName, response.profileObj.familyName));
 
@@ -62,12 +77,11 @@ const Content = () => {
 	}
 
 	const routeChange = (response) => {
-		fetch(`${BASE_URL[environment]}/api/user?email=${response}`, {
+		fetch(`${BASE_URL[environment]}/api/user?email=${response}&space=${space.current}`, {
 			crossDomain: true,
 			method: 'GET',
 			headers: {
-				'Content-type': 'application/json',
-				'Content-Security-Policy': 'upgrade-insecure-requests'
+				'Content-type': 'application/json'
 			}
 		}).then(response => response.json())
 			.then(userExists => {
@@ -135,6 +149,7 @@ ReactDOM.render(
 					</Route>
 				</Switch>
 			</Router>
+			<Footer />
 		</PersistGate>
 	</Provider>
 	, document.getElementById('root')

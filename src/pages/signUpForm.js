@@ -11,14 +11,15 @@ const SignupForm = () => {
 	// Pass the useFormik() hook initial form values and a submit function that will
 	// be called when the form is submitted
 	const history = useHistory();
-	const userEmail = useSelector((state) => state.user.email)
-	const userName = useSelector((state) => state.user.fullName)
+	const userEmail = useSelector((state) => state.user.email);
+	const userName = useSelector((state) => state.user.fullName);
+	const space = useSelector((state) => state.user.space);
 
 	const registerUser = values => {
 		fetch(`${BASE_URL[environment]}/api/user`, {
 			crossDomain: true,
 			method: 'POST',
-			body: JSON.stringify({ email: userEmail, ...values }),
+			body: JSON.stringify({ email: userEmail, space: space, ...values }),
 			headers: {
 				'Content-type': 'application/json',
 				'Content-Security-Policy': 'upgrade-insecure-requests'

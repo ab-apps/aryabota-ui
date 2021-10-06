@@ -1,6 +1,6 @@
 export const MAZE_TYPES = {
     SET_DATA: 'maze/set_all_data',
-    // UNSET_DATA: 'maze/unset_all_data',
+    UNSET_DATA: 'maze/unset_all_data',
     UPDATE_POS: 'maze/update_position',
     UPDATE_DIR: 'maze/update_direction',
     SET_ERR: 'maze/set_error',
@@ -15,6 +15,12 @@ export const setData = data => {
         type: MAZE_TYPES.SET_DATA,
         payload: data,
     };
+};
+
+export const unsetData = () => {
+    return {
+        type: MAZE_TYPES.UNSET_DATA
+    }
 };
 
 export const updatePosition = (rowPos, colPos) => {

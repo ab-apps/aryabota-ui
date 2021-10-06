@@ -65,8 +65,6 @@ export default function Maze(props) {
     let classnames = "penUp";
     let blockImg = null;
     let rotation = '0';
-    // console.log(blockCount)
-    // console.log(props.positionsSeen)
     if (props?.positionsSeen?.indexOf(blockCount) >= 0) {
         classnames = "penDown";
     }

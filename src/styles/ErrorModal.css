@@ -14,14 +14,16 @@
   }
   
   /* Modal Content/Box */
-  .modal-content {
+  .error-modal {
     display: flex;
     flex-direction: column;
     background-color: #fefefe;
     margin: 21% auto;
     padding: 20px;
     width: 31%;
-    height: 30%;
+    height: 20%;
+    font-size: 90%;
+    text-align: center;
     align-items: center;
     row-gap: 5%;
     justify-content: center;

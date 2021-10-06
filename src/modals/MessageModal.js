@@ -23,7 +23,7 @@ function MessageModal(props) {
     }
     return (
         <div className="modal" onClick={dismiss_modal}>
-            <div className="modal-content">
+            <div className="error-modal">
                 <Linkify>
                     <div>{props.error_message}</div>
                 </Linkify>

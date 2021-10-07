@@ -17,6 +17,8 @@
   width: 400px;
   max-width: 400px;
   height: 70vh;
+  overflow: auto;
+  overflow-x: hidden;
 }
 
 .first-pane, .python-div {
@@ -27,6 +29,8 @@
   width: 200px;
   max-width: 200px;
   height: 70vh;
+  overflow: auto;
+  overflow-x: hidden;
 }
 
 
@@ -74,4 +78,25 @@ width: 116%;
   color: #052529;
   width: 94%;
   padding: 2% 2%;
+}
+
+
+@media screen and (max-height: 700px) {
+  #editor-div {
+    height: 250px !important;
+  }
+  .block {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media screen and (min-height: 700px) {
+  #editor-div {
+    height: 300px !important;
+  }
+  .block {
+    width: 50px;
+    height: 50px;
+  }
 }

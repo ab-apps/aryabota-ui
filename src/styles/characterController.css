@@ -61,9 +61,17 @@ width: 116%;
 }
 
 .separator{
-  height: 106vh;
+  height: auto;
+  min-height: 667px;
   border: 0.5px solid;
   color: black;
+}
+
+
+@media screen and (min-height : 760px) {
+  .separator{
+    height: 100vh;
+  }
 }
 
 #question {

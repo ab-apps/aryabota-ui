@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './styles/levelMap.css';
 import { useDispatch, useSelector } from 'react-redux'
-import { setLevel, setLevels } from './reducers/user/userActions';
+import { setLevel, setBotStatus, setLevels } from './reducers/user/userActions';
 import { convertToContinuousNumbering } from './utils';
 import { BASE_URL, environment } from './constants/routeConstants';
 import { setData } from './reducers/maze/mazeActions';
@@ -54,6 +54,7 @@ function LevelMap(props) {
             .then(response => response.json())
             .then(response => {
                 dispatch(setLevel(level));
+                dispatch(setBotStatus("inactive"));
                 dispatch(setData({
                     rows: response?.rows,
                     columns: response?.columns,

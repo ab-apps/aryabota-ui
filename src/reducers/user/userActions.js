@@ -5,7 +5,8 @@ export const USER_TYPES = {
     SET_NAME: 'user/set_name',
     SET_SPACE: 'user/set_space',
     SET_LEVELS: 'user/set_levels',
-    UNSET_ALL: 'user/unset_all'
+    UNSET_ALL: 'user/unset_all',
+    SET_BOT_STATUS: 'user/set_bot_status'
 };
 
 export const addEmail = (email) => {
@@ -52,5 +53,12 @@ export const addName = (firstName, lastName) => {
 export const clearData = () => {
     return {
         type: USER_TYPES.UNSET_ALL,
+    };
+}
+
+export const setBotStatus = (botStatus) => {
+    return {
+        type: USER_TYPES.SET_BOT_STATUS,
+        payload: {botStatus: botStatus}
     };
 }

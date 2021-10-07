@@ -1,5 +1,6 @@
 .levelMap {
-    height: calc(100vh - 90px);
+    /* height: 100vh; */
+    min-height: 600px;
     width: 80px;
     min-width: 70px;
     position: relative;

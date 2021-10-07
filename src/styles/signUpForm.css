@@ -9,7 +9,10 @@
     font-size: x-large;
     box-shadow: 2px 2px 2px 2px #01393fe0;
     padding: 5% 2%;
-    margin: 3% auto ;
+    margin-top: 3%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10%;
     display: flex;
     /* align-items: center; */
     flex-direction: column;
@@ -121,3 +124,10 @@ select{
 	background-color: #d8e9f9;
 	cursor: pointer;
 }
+
+
+@media only screen and (max-width: 745px) {
+	.sign-up-form {
+		margin-bottom: 26%;
+	}
+  }

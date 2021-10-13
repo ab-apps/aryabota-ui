@@ -1,5 +1,5 @@
 body {
-    background-color: #006b76;
+    background-color: #91b9bd;
 }
 
 .hrefs {
@@ -10,4 +10,13 @@ body {
 .hrefs:hover {
     text-decoration: none;
     font-weight: bold;
+}
+
+.about-item {
+    background-color: hsl(240deg 7% 97% / 27%);
+    padding: 2%;
+}
+
+.about-page {
+    margin: 5% 2%;
 }

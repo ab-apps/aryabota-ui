@@ -2,7 +2,7 @@ import React from 'react';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import '../styles/about.css';
-import notion_logo from '../assets/Notion_app_logo.png';
+// import notion_logo from '../assets/Notion_app_logo.png';
 
 function About() {
     return (

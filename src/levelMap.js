@@ -19,6 +19,7 @@ import { setData } from './reducers/maze/mazeActions';
 function LevelMap(props) {
     const dispatch = useDispatch();
     const space = useSelector((state) => state.user.space);
+    const currentLevel = useSelector((state) => state.user.currentLevel);
     const [levelMap, setLevelMap] = useState(undefined)
 
     const fetchLevelMap = () => {
@@ -34,7 +35,10 @@ function LevelMap(props) {
                 .then(response => {
                     dispatch(setLevels(response));
                     setLevelMap(response.map(level => {
-                        return <div className="levelList" onClick={(e) => getLevel(e)}>{level}</div>
+                        if(level === currentLevel.toString())
+                            return <div className="levelList selectedLevel" onClick={(e) => getLevel(e)}>{level}</div>
+                        else
+                            return <div className="levelList" onClick={(e) => getLevel(e)}>{level}</div>
                     }))
                 })
         }
@@ -53,6 +57,7 @@ function LevelMap(props) {
         })
             .then(response => response.json())
             .then(response => {
+                setLevelMap(levelMap);
                 dispatch(setLevel(level));
                 dispatch(setBotStatus("inactive"));
                 dispatch(setData({

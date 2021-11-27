@@ -25,6 +25,7 @@ import { addEmail, addName, setSpace } from './reducers/user/userActions';
 import { BASE_URL, environment } from './constants/routeConstants';
 import { clearData } from './reducers/user/userActions';
 import { Button } from '@material-ui/core';
+import { unsetData } from './reducers/maze/mazeActions';
 
 const failed = (response) => {
 	console.log("failed:", response);
@@ -34,6 +35,7 @@ const Content = () => {
 	const dispatch = useDispatch();
 	useEffect(() => {
 		dispatch(clearData());
+		dispatch(unsetData());
 	/* eslint-disable-next-line react-hooks/exhaustive-deps */
     }, []);
 	const [modal, showModal] = useState(false);

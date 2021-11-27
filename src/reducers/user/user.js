@@ -39,7 +39,8 @@ const userReducer = (state = initialState, action ) => {
             space: '',
             email: '',
             fullName: '',
-            currentLevel: 0.1
+            currentLevel: 0.1,
+            botStatus: 'inactive' 
         };
         default: return state;
     }

@@ -37,6 +37,10 @@
     cursor: pointer;
 }
 
+.selectedLevel {
+    background-color: #ebbb1e;
+}
+
 .levelList:hover {
     background-color: #ebbb1e;
     color: black;

@@ -48,7 +48,7 @@ const Content = () => {
 			space.current = 'IPS678';
 			routeChange(roll_number);
 		}
-		if (password === "ips1234") {
+		else if (password === "ips1234") {
 			dispatch(addEmail(roll_number));
 			dispatch(setSpace('IPS'));
 			space.current = 'IPS';

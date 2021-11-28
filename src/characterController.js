@@ -284,10 +284,11 @@ const Controller = () => {
                             <AceEditor
                                 style={{
                                     width: '116%',
-                                    height: '300px'
+                                    height: '300px',
+                                    fontFamily: 'monospace'
                                 }}
                                 classname="editor"
-                                mode="java"
+                                mode="python"
                                 theme="github"
                                 fontSize={editorFont}
                                 onChange={onChange}
@@ -339,7 +340,7 @@ const Controller = () => {
                             height: '100px'
                         }}
                         classname="editor"
-                        mode="java"
+                        mode="python"
                         theme="github"
                         value={getOutputValue()}
                         fontSize={editorFont}
@@ -358,7 +359,7 @@ const Controller = () => {
                         height: '300px'
                     }}
                     classname="editor"
-                    mode="java"
+                    mode="python"
                     theme="github"
                     value={getPythonicCode()}
                     fontSize={editorFont}

@@ -40,6 +40,12 @@ const Content = () => {
 	const space = useRef('');
 
 	const IpsFormValidator = (password, roll_number) => {
+		if (password === "ips678") {
+			dispatch(addEmail(roll_number));
+			dispatch(setSpace('IPS678'));
+			space.current = 'IPS678';
+			routeChange(roll_number);
+		}
 		if (password === "ips1234") {
 			dispatch(addEmail(roll_number));
 			dispatch(setSpace('IPS'));

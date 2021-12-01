@@ -11,7 +11,7 @@ function Footer() {
             <div className="footer">
                 <div className="icons-container">
                     Contact Us:
-                    <a className='icons' href='https://discord.gg/BCCga2Qh' target="_blank" rel="noreferrer noopener">
+                    <a className='icons' href='https://discord.com/invite/9eyHmGn7m2' target="_blank" rel="noreferrer noopener">
                         <i className="fab fa-discord"></i>
                     </a>
                     <a className='icons' href='mailto:aryabota.info@gmail.com' target="_blank" rel="noreferrer noopener">

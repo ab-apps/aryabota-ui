@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import AceEditor from "react-ace";
+import MonacoEditor from 'react-monaco-editor';
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-github";
 import './styles/characterController.css';
@@ -77,7 +78,7 @@ const Controller = () => {
                 control.steps.shift()
             }
         } else {
-            clearInterval(control.changeInterval)  
+            clearInterval(control.changeInterval)
             clearInterval(control.forwardChangeInterval)
             dispatch(setBotStatus("paused"))
             setControl(prev => ({
@@ -123,7 +124,7 @@ const Controller = () => {
                 step.stateChanges?.forEach(change => {
                     const newPos = convertToContinuousNumbering(change.row, change.column, currState.columns);
                     const newDir = change.dir;
-                    const newPositionsSeen = change.coloured?.map(trailObj => 
+                    const newPositionsSeen = change.coloured?.map(trailObj =>
                         convertToContinuousNumbering(trailObj.position.row, trailObj.position.column, currState.columns)
                     );
                     currState = {
@@ -158,7 +159,7 @@ const Controller = () => {
             crossDomain: true,
             method: 'GET',
             headers: {
-            'Content-type': 'application/json'
+                'Content-type': 'application/json'
             }
         })
             .then(response => response.json())
@@ -174,12 +175,12 @@ const Controller = () => {
                     levelType: response?.type,
                     home: response?.homes?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
                     statement: response?.statement,
-                  }));
+                }));
             });
         fetch(`${BASE_URL[environment]}/api/problem?level=` + currentLevel, {
             crossDomain: true,
             method: 'POST',
-            body: JSON.stringify({ commands: code, level: currentLevel.toString(), email: userEmail, space: space}),
+            body: JSON.stringify({ commands: code, level: currentLevel.toString(), email: userEmail, space: space }),
             headers: {
                 'Content-type': 'application/json'
             }
@@ -224,7 +225,7 @@ const Controller = () => {
                 crossDomain: true,
                 method: 'GET',
                 headers: {
-                'Content-type': 'application/json'
+                    'Content-type': 'application/json'
                 }
             })
                 .then(response => response.json())
@@ -241,9 +242,9 @@ const Controller = () => {
                         levelType: response?.type,
                         home: response?.homes?.map(obj => convertToContinuousNumbering(obj?.position?.row, obj?.position?.column, response?.columns)),
                         statement: response?.statement
-                      }));
+                    }));
                 });
-        }      
+        }
     }
 
     let [editorValue, setEditorValue] = useState('');
@@ -279,7 +280,7 @@ const Controller = () => {
                         <div style={{
                             marginRight: '50px'
                         }}>
-                            <AceEditor
+                            {/* <AceEditor
                                 style={{
                                     width: '116%',
                                     height: '300px',
@@ -292,6 +293,13 @@ const Controller = () => {
                                 onChange={onChange}
                                 name="editor-div"
                                 editorProps={{ $blockScrolling: true }}
+                            /> */}
+                            <MonacoEditor
+                                width='116%'
+                                height='300px'
+                                classname="editor"
+                                language="python"
+                                onChange={onChange}
                             />
                         </div>
 
@@ -308,7 +316,6 @@ const Controller = () => {
                                 type="submit"
                                 variant="contained"
                                 // color="primary"
-                                
                                 endIcon={<PlayArrowRounded />}
                             >
                                 {getButtonText()}
@@ -332,7 +339,7 @@ const Controller = () => {
                 <br />
                 <div className="output-div">
                     <h3 className="output-title">Output</h3>
-                    <AceEditor
+                    {/* <AceEditor
                         style={{
                             width: '100%',
                             height: '100px'
@@ -345,13 +352,21 @@ const Controller = () => {
                         readOnly={true}
                         name="output-div"
                         editorProps={{ $blockScrolling: true }}
+                    /> */}
+                    <MonacoEditor
+                        width='100%'
+                        height='100px'
+                        language="python"
+                        options='readOnly: true'
+                        value={getOutputValue()}
+                        onChange={onChange}
                     />
                 </div>
             </div>
             <div className="separator" id="separator-2"></div>
             <div className="python-div" id="python-pane">
                 <h3>Translated Code: Python</h3>
-                <AceEditor
+                {/* <AceEditor
                     style={{
                         width: '100%',
                         height: '300px'
@@ -364,6 +379,14 @@ const Controller = () => {
                     readOnly={true}
                     name="python-div"
                     editorProps={{ $blockScrolling: true }}
+                /> */}
+                <MonacoEditor
+                    width='100%'
+                    height='300px'
+                    language="python"
+                    options='readOnly: true'
+                    value={getPythonicCode()}
+                    onChange={onChange}
                 />
             </div>
             <div className="controller"></div>
